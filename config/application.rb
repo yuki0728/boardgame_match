@@ -19,7 +19,6 @@ module BoardgameMatch
     # the framework and any gems in your application.
 
     config.generators do |g|
-      g.template_engine false
       g.javascripts false
       g.stylesheets false
       g.helper false
