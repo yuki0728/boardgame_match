@@ -44,6 +44,8 @@ gem 'dotenv-rails'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'bootstrap-sass'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -63,6 +65,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop-airbnb'
   gem 'rubocop', '~> 0.76'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
