@@ -38,5 +38,4 @@ ActiveRecord::Schema.define(version: 2020_09_02_101105) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
-
 end
