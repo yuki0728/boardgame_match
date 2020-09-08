@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Sign Up", :devise do
-  scenario "メールアドレスとパスワードが有効になる" do
+  scenario "アカウントの登録が完了する。" do
     sign_up_with("user", "test@example.com", "password", "password")
 
     texts = [
@@ -11,10 +11,22 @@ RSpec.describe "Sign Up", :devise do
     expect(page).to have_content(/.*#{texts[0]}.*|.*#{texts[1]}.*/)
   end
 
+  scenario "ユーザ名が値が入力されていない" do
+    sign_up_with("", "test@example.com", "password", "password")
+
+    expect(page).to have_content("ユーザー名が入力されていません。")
+  end
+
   scenario "emailアドレスの値が不正である" do
     sign_up_with("user", "email", "password", "password")
 
     expect(page).to have_content("メールアドレスは有効でありません。")
+  end
+
+  scenario "emailアドレスの値が入力されていない" do
+    sign_up_with("user", "", "password", "password")
+
+    expect(page).to have_content("メールアドレスが入力されていません。")
   end
 
   scenario "パスワードが空である" do
