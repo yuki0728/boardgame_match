@@ -17,14 +17,18 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
   end
-
+  
   def show
     @event = Event.find(params[:id])
   end
 
   def destroy
-    @post.destroy
-    redirect_to request.referrer || root_url
+    @event = Event.find(params[:id])
+    if @event.destroy
+      redirect_to events_url
+    else
+      redirect_to events_url
+    end
   end
 
   private
