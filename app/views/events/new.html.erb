@@ -1,0 +1,9 @@
+<%= form_for (@event), url:events_path do |f| %>
+  <%= f.label :イベント名 %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.label :概要 %>
+  <%= f.text_field :text, class: 'form-control' %>
+
+  <%= f.submit %>
+<% end %>

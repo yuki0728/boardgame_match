@@ -6,7 +6,12 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.posts.build(post_params)
+    @event = Event.create(post_params)
+    if @event.save
+      redirect_to action: :show, id: @event.id
+    else
+      render :index
+    end
   end
 
   def index
@@ -20,5 +25,11 @@ class EventsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to request.referrer || root_url
+  end
+
+  private
+
+  def post_params
+    params.require(:event).permit(:name, :text)
   end
 end
