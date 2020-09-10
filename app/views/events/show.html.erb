@@ -1,4 +1,5 @@
 <%= @event.name %>
 <%= @event.text %>
 
+<%= link_to "イベント編集", edit_event_path(@event) %>
 <%= link_to "イベント削除", event_path ,method: :delete %>
