@@ -1,5 +1,7 @@
 <%= @event.name %>
 <%= @event.text %>
+<%=  l(@event.start_time , format: :long) %>
+<%=  l(@event.ending_time , format: :long) %>
 
 <%= link_to "イベント編集", edit_event_path(@event) %>
 <%= link_to "イベント削除", event_path ,method: :delete %>

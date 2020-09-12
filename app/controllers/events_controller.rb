@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.create(post_params)
+    @event = Event.create(events_params)
     if @event.save
       redirect_to action: :show, id: @event.id
     else
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
 
   private
 
-  def post_params
-    params.require(:event).permit(:name, :text)
+  def events_params
+    params.require(:event).permit(:name, :text, :start_time, :ending_time)
   end
 end
