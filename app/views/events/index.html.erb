@@ -5,6 +5,10 @@
       <%= event.text %>
       <%=  l(event.start_time , format: :long, default: '-') %>
       <%=  l(event.ending_time , format: :long, default: '-') %>
+      参加人数
+      <%= event.participations.count %>
+      /
+      <%= event.participant_limit %>
     <% end %>
   </li>
 <% end %>

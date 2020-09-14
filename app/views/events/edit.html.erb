@@ -1,9 +1,18 @@
-<%= form_for (@event), url:events_path do |f| %>
+<%= form_for (@event), url:event_path do |f| %>
   <%= f.label :イベント名 %>
   <%= f.text_field :name, class: 'form-control' %>
 
   <%= f.label :概要 %>
   <%= f.text_field :text, class: 'form-control' %>
+
+  <%= f.label :開始時間 %>
+  <%= f.datetime_select :start_time, use_month_numbers: true, class: 'time-box' %>
+
+  <%= f.label :終了時間 %>
+  <%= f.datetime_select :ending_time, use_month_numbers: true, class: 'time-box' %>
+
+  <%= f.label :参加人数 %>
+  <%= f.number_field :participant_limit %>
 
   <%= f.submit %>
 <% end %>

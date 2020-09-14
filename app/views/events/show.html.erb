@@ -5,6 +5,8 @@
 
 <b>参加人数:</b> 
 <%= @event.participations.count %>
+/
+<%= @event.participant_limit %>
 
 <% if @event.participated_by?(current_user) %>
   <p><%=link_to "イベント参加取り消し", event_participation_path(@event.id), method: :delete %></p>

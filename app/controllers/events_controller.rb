@@ -28,6 +28,15 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(events_params)
+      redirect_to @event
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     @event = Event.find(params[:id])
     if @event.destroy
@@ -40,6 +49,6 @@ class EventsController < ApplicationController
   private
 
   def events_params
-    params.require(:event).permit(:name, :text, :start_time, :ending_time)
+    params.require(:event).permit(:name, :text, :start_time, :ending_time, :participant_limit)
   end
 end
