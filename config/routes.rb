@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get 'events/show'
   get 'pages/show'
 
-  resources :events
-
+  resources :events do
+    resources :participations, only: [:create, :destroy]
+  end
+  
   devise_for :users
   # app/views/users/shared/_links.html.erb (リンク用パーシャル)
   # app/views/users/confirmations/new.html.erb (認証メールの再送信画面)
