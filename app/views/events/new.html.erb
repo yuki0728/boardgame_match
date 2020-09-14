@@ -11,5 +11,8 @@
   <%= f.label :終了時間 %>
   <%= f.datetime_select :ending_time, use_month_numbers: true, class: 'time-box' %>
 
+  <%= f.label :参加人数 %>
+  <%= f.number_field :participant_limit %>
+
   <%= f.submit %>
 <% end %>
