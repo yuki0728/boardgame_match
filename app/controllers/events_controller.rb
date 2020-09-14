@@ -7,6 +7,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create(events_params)
+    @event.user_id = current_user.id
     if @event.save
       redirect_to action: :show, id: @event.id
     else
