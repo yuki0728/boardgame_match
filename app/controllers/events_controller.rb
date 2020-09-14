@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  # before_action :sign_in_required, only: [:show]
+  # ログイン必須ページを指定(ゲストはログインページへリダイレクト)
+  before_action :authenticate_user!, only: [:show, :edit, new]
 
   def new
     @event = Event.new
