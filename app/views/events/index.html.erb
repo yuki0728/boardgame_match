@@ -9,6 +9,9 @@
       <%= event.participations.count %>
       /
       <%= event.participant_limit %>
+      <% event.tag_list.each do |tag| %>
+        <%= tag %>
+      <% end %>
     <% end %>
   </li>
 <% end %>
