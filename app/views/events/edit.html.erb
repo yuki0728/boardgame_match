@@ -14,5 +14,8 @@
   <%= f.label :参加人数 %>
   <%= f.number_field :participant_limit %>
 
+  <%= f.label :タグ %>
+  <%= f.text_field_tag :tag_list, value: @event.tag_list.join(','), class: "form-control" %>
+
   <%= f.submit %>
 <% end %>

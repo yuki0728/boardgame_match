@@ -1,4 +1,7 @@
 <%= @event.name %>
+<% @event.tag_list.each do |tag| %>
+  <%= tag %>
+<% end %>
 <%= @event.text %>
 <%=  l(@event.start_time , format: :long, default: '-') %>
 <%=  l(@event.ending_time , format: :long, default: '-') %>
