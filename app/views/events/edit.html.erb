@@ -1,4 +1,6 @@
 <%= form_for (@event), url:event_path do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+
   <%= f.label :イベント名 %>
   <%= f.text_field :name, class: 'form-control' %>
 
@@ -15,7 +17,7 @@
   <%= f.number_field :participant_limit %>
 
   <%= f.label :タグ %>
-  <%= f.text_field_tag :tag_list, value: @event.tag_list.join(','), class: "form-control" %>
+  <%= f.text_field :tag_list, value: @event.tag_list.join(','), class: "form-control" %>
 
   <%= f.submit %>
 <% end %>

@@ -7,6 +7,14 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      event:
+        name: イベント名
+        text: 概要
+        start_time: 開始時間
+        ending_time: 終了時間
+        participant_limit: 参加上限
+        tag_list: タグ
   date:
     abbr_day_names:
     - 日
