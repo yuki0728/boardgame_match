@@ -1,4 +1,6 @@
 <%= form_for (@event), url:events_path, method: :post do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+
   <%= f.label :イベント名 %>
   <%= f.text_field :name, class: 'form-control' %>
 
@@ -11,7 +13,7 @@
   <%= f.label :終了時間 %>
   <%= f.datetime_select :ending_time, use_month_numbers: true, class: 'time-box' %>
 
-  <%= f.label :参加人数 %>
+  <%= f.label :参加上限 %>
   <%= f.number_field :participant_limit %>
 
   <%= f.label :タグ %>

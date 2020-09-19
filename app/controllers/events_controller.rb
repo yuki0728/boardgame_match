@@ -12,7 +12,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to action: :show, id: @event.id
     else
-      render :index
+      render :new
     end
   end
 
