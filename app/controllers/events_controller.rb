@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   # ログイン必須ページを指定(ゲストはログインページへリダイレクト)
-  before_action :authenticate_user!, only: [:show, :edit, new]
+  before_action :authenticate_user!, only: [:show, :edit, :new]
 
   def new
     @event = Event.new
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
     if @event.update(events_params)
       redirect_to @event
     else
-      render 'edit'
+      render :edit
     end
   end
 
