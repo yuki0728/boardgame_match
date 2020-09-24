@@ -14,11 +14,10 @@ class Event < ApplicationRecord
   validates :text, length: { maximum: 3000 }, presence: true
   # 開始、終了時間のValitation
   validates_datetime :ending_time, :after => :start_time # 開始日時 <　終了日時
-  validates_datetime :start_time, :on => :create, :on_or_after => :today # 今日以降の日時である
+  validates_datetime :start_time, :on => :create, :on_or_after => :now # 現在以降の日時である
   # 参加人数のValitation
   validate :check_number_of_participant_limit
-  validates :participant_limit, presence: true,
-                                numericality: { only_integer: true, greater_than: 0 }
+  validates :participant_limit, numericality: { only_integer: true, greater_than: 0 }
 
   def check_number_of_participant_limit
     if participant_limit && participant_limit < participations.count

@@ -29,7 +29,7 @@ RSpec.describe "Events", type: :request do
 
     it_behaves_like 'Check_request_success'
 
-    it 'イベント名及び概要が表示されていること' do
+    it 'イベント名及び本文が表示されていること' do
       aggregate_failures do
         0.upto(2).each do |index|
           expect(response.body).to include events[index].name
@@ -50,7 +50,7 @@ RSpec.describe "Events", type: :request do
 
         it_behaves_like 'Check_request_success'
 
-        it 'イベント名及び概要が表示されていること' do
+        it 'イベント名及び本文が表示されていること' do
           expect(response.body).to include event.name
           expect(response.body).to include event.text
         end
