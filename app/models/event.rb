@@ -19,6 +19,10 @@ class Event < ApplicationRecord
   validate :check_number_of_participant_limit
   validates :participant_limit, numericality: { only_integer: true, greater_than: 0 }
 
+  def owner?(user)
+    user_id.equal? user.id
+  end
+
   def check_number_of_participant_limit
     if participant_limit && participant_limit < participations.count
       errors.add(:participant_limit, "が参加人数より少ないです")

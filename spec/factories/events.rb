@@ -11,5 +11,10 @@ FactoryBot.define do
     trait :invalid do
       name nil
     end
+
+    trait :update_event do
+      sequence(:name) { |n| "やっぱりドミニオンにしよう#{n}" }
+      sequence(:text) { |n| "ドミニオンをプレイする人を募集！#{n}" }
+    end
   end
 end

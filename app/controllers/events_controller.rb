@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   # ログイン必須ページを指定(ゲストはログインページへリダイレクト)
   before_action :authenticate_user!, only: [:show, :edit, :new]
+  before_action :correct_user, only: :destroy
 
   def new
     @event = Event.new
@@ -51,5 +52,10 @@ class EventsController < ApplicationController
   def events_params
     params.require(:event).permit(:name, :text, :start_time, :ending_time, :participant_limit,
                                   :tag_list)
+  end
+
+  def correct_user
+    @event = current_user.events.find_by(id: params[:id])
+    redirect_to root_url if @event.nil?
   end
 end

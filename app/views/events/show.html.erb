@@ -16,6 +16,7 @@
 <% else %>
   <p><%=link_to "イベント参加", event_participations_path(@event.id), method: :post %></p>
 <% end %>
-
-<%= link_to "イベント編集", edit_event_path(@event) %>
-<%= link_to "イベント削除", event_path ,method: :delete %>
+<% if @event.owner?(current_user) %>
+  <%= link_to "イベント編集", edit_event_path(@event) %>
+  <%= link_to "イベント削除", event_path ,method: :delete %>
+<% end %>

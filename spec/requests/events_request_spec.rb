@@ -1,27 +1,26 @@
 require 'rails_helper'
 
+shared_context 'login_user' do
+  let!(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
+end
+
+shared_examples 'Check_redirect_to_sign_in_page' do
+  it 'サインインページにリダイレクトされること' do
+    expect(response).to redirect_to new_user_session_path
+  end
+end
+
+shared_examples 'Check_request_success' do
+  it 'リクエストが成功すること' do
+    expect(response.status).to eq 200
+  end
+end
+
 RSpec.describe "Events", type: :request do
-  shared_context 'login_user' do
-    let!(:user) { create(:user) }
-
-    before do
-      user.confirm
-      sign_in user
-    end
-  end
-
-  shared_examples 'Check_redirect_to_sign_in_page' do
-    it 'サインインページにリダイレクトされること' do
-      expect(response).to redirect_to new_user_session_path
-    end
-  end
-
-  shared_examples 'Check_request_success' do
-    it 'リクエストが成功すること' do
-      expect(response.status).to eq 200
-    end
-  end
-
   describe 'GET #index' do
     let!(:events) { create_list :event, 3 }
 
@@ -161,6 +160,47 @@ RSpec.describe "Events", type: :request do
       it 'エラーが表示されること' do
         post events_url, params: { event: attributes_for(:event, :invalid) }
         expect(response.body).to include 'イベント名を入力してください'
+      end
+    end
+  end
+
+  describe 'PUT #update' do
+    let(:event) { create :event }
+
+    context 'パラメータが妥当な場合' do
+      it 'リクエストが成功すること' do
+        put event_url event, params: { event: attributes_for(:event, :update_event) }
+        expect(response.status).to eq 302
+      end
+
+      it 'ユーザー名が更新されること' do
+        update_event = attributes_for(:event, :update_event)
+        expect do
+          put event_url event, params: { event: update_event }
+        end.to change { Event.find(event.id).name }.from(event.name).to(update_event[:name])
+      end
+
+      it 'リダイレクトすること' do
+        put event_url event, params: { event: attributes_for(:event, :update_event) }
+        expect(response).to redirect_to Event.last
+      end
+    end
+
+    context 'パラメータが不正な場合' do
+      it 'リクエストが成功すること' do
+        put event_url event, params: { event: attributes_for(:event, :invalid) }
+        expect(response.status).to eq 200
+      end
+
+      it 'ユーザー名が変更されないこと' do
+        expect do
+          put event_url event, params: { event: attributes_for(:event, :invalid) }
+        end.not_to change(Event.find(event.id), :name)
+      end
+
+      it 'エラーが表示されること' do
+        put event_url event, params: { event: attributes_for(:event, :invalid) }
+        expect(response.body).to include I18n.t(:"errors.messages.empty")
       end
     end
   end

@@ -63,7 +63,6 @@ RSpec.describe "Users", type: :request do
 
       context 'ログインしている場合' do
         before do
-          user.confirm
           sign_in user
         end
 

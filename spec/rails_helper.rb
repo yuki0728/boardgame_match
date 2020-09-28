@@ -71,7 +71,8 @@ RSpec.configure do |config|
     end
   end
 
-  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers
   config.include FactoryBot::Syntax::Methods
   config.include SessionHelpers
+  config.include SelectDateTimeHelpers
 end
