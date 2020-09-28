@@ -133,7 +133,7 @@ RSpec.describe "Events", type: :request do
         expect(response.status).to eq 302
       end
 
-      it 'ユーザーが登録されること' do
+      it 'イベントが登録されること' do
         expect do
           post events_url, params: { event: attributes_for(:event) }
         end.to change(Event, :count).by(1)
@@ -151,7 +151,7 @@ RSpec.describe "Events", type: :request do
         expect(response.status).to eq 200
       end
 
-      it 'ユーザーが登録されないこと' do
+      it 'イベントが登録されないこと' do
         expect do
           post events_url, params: { event: attributes_for(:event, :invalid) }
         end.not_to change(Event, :count)
@@ -173,7 +173,7 @@ RSpec.describe "Events", type: :request do
         expect(response.status).to eq 302
       end
 
-      it 'ユーザー名が更新されること' do
+      it 'イベント名が更新されること' do
         update_event = attributes_for(:event, :update_event)
         expect do
           put event_url event, params: { event: update_event }
@@ -192,7 +192,7 @@ RSpec.describe "Events", type: :request do
         expect(response.status).to eq 200
       end
 
-      it 'ユーザー名が変更されないこと' do
+      it 'イベント名が変更されないこと' do
         expect do
           put event_url event, params: { event: attributes_for(:event, :invalid) }
         end.not_to change(Event.find(event.id), :name)
@@ -202,6 +202,27 @@ RSpec.describe "Events", type: :request do
         put event_url event, params: { event: attributes_for(:event, :invalid) }
         expect(response.body).to include I18n.t(:"errors.messages.empty")
       end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    include_context 'login_user'
+    let!(:event) { create :event, user_id: user.id }
+
+    it 'リクエストが成功すること' do
+      delete event_url event
+      expect(response.status).to eq 302
+    end
+
+    it 'イベントが削除されること' do
+      expect do
+        delete event_url event
+      end.to change(Event, :count).by(-1)
+    end
+
+    it 'イベント一覧にリダイレクトすること' do
+      delete event_url event
+      expect(response).to redirect_to(events_url)
     end
   end
 end
