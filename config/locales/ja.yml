@@ -10,7 +10,7 @@ ja:
     attributes:
       event:
         name: イベント名
-        text: 概要
+        text: 本文
         start_time: 開始時間
         ending_time: 終了時間
         participant_limit: 参加上限
