@@ -18,7 +18,13 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    @search_params = event_search_params
+    if @search_params == {}
+      # 検索していない場合でもイベント一覧は表示する。
+      @events = Event.all
+    else
+      @events = Event.search(@search_params)
+    end
   end
 
   def show
@@ -52,6 +58,10 @@ class EventsController < ApplicationController
   def events_params
     params.require(:event).permit(:name, :text, :start_time, :ending_time, :participant_limit,
                                   :tag_list)
+  end
+
+  def event_search_params
+    params.fetch(:search, {}).permit(:name, :tag_list, :date)
   end
 
   def correct_user

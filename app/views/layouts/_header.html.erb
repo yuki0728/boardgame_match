@@ -1,5 +1,6 @@
 <header>
     <nav>
+      <%= render 'events/search' %>
       <% if user_signed_in? %>
         <strong><%= link_to current_user.username, root_path %></strong>
         <%= link_to 'プロフィール変更', edit_user_registration_path %>
