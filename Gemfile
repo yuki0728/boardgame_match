@@ -44,10 +44,10 @@ gem 'dotenv-rails'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'bootstrap-sass'
-gem 'devise-i18n'
-gem 'devise-i18n-views'
 gem 'acts-as-taggable-on'
 gem 'validates_timeliness'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

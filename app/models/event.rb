@@ -19,6 +19,23 @@ class Event < ApplicationRecord
   validate :check_number_of_participant_limit
   validates :participant_limit, numericality: { only_integer: true, greater_than: 0 }
 
+  scope :search, -> (search_params) do
+    return if search_params.blank?
+
+    name_like(search_params[:name]).
+      find_by_tag(search_params[:tag_list]).
+      find_by_start_time(search_params[:date])
+  end
+
+  scope :name_like, -> (name) { where('name LIKE ?', "%#{name}%") if name.present? }
+  scope :find_by_tag, -> (tags) { tagged_with(tags, any: true) if tags.present? }
+  scope :find_by_start_time, -> (date) {
+                                if date.present?
+                                  where(start_time: (date.to_date.midnight - 1.day)..date.to_date.midnight).
+                                    or(where(ending_time: (date.to_date.midnight - 1.day)..date.to_date.midnight))
+                                end
+                              }
+
   def owner?(user)
     user_id.equal? user.id
   end
