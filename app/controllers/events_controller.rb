@@ -57,7 +57,7 @@ class EventsController < ApplicationController
 
   def events_params
     params.require(:event).permit(:name, :text, :start_time, :ending_time, :participant_limit,
-                                  :tag_list)
+                                  :tag_list, :img)
   end
 
   def event_search_params

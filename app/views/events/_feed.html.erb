@@ -1,6 +1,9 @@
 <ul>
   <%= link_to event_path(event) do %>
     <div class="eventlist">
+      <% if event.img? %>
+        <%= image_tag event.img.thumb.url %>
+      <% end %>
       <div class="name">
         <%= event.name %>
       </div>

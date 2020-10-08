@@ -6,6 +6,9 @@ class Event < ApplicationRecord
   has_many :participations, dependent: :destroy
   has_many :participate_users, through: :participations, source: :user
 
+  # 画像アップロードの設定
+  mount_uploader :img, ImgUploader
+
   # タグの設定
   acts_as_taggable
 

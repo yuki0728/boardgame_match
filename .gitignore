@@ -31,3 +31,5 @@ capybara-*.html
 -.rspec
 /log
 /tmp
+# 投稿画像は含まない
+/public/uploads/
