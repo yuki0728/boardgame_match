@@ -16,4 +16,7 @@
 <%= f.label :tag_list %>
 <%= f.text_field :tag_list, value: @event.tag_list.join(','), class: "form-control" %>
 
+<%= f.label :img %>
+<%= f.file_field :img %>
+
 <%= f.submit %>

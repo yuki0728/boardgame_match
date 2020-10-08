@@ -22,18 +22,20 @@ User.create!(
   )
 end
 
+FileUtils.rm_rf("#{Rails.root}/public/uploads/event")
 # イベント
 start_time = DateTime.current.tomorrow
 Event.create!(
   [
     {
-      name: "ドミニオンやりたい",
+      name: "ドミニオンの大会を名古屋で開催します",
       text: "みんなで色々ゲームしよう！",
       start_time: DateTime.current.tomorrow,
       ending_time: start_time.since(3.hours),
       participant_limit: "4",
       tag_list: "ドミニオン,名古屋",
       user_id: "1",
+      img: open("#{Rails.root}/db/fixtures/sample1.jpg"),
     },
     {
       name: "ゲーマー",
@@ -41,34 +43,40 @@ Event.create!(
       start_time: DateTime.current.tomorrow,
       ending_time: start_time.since(3.hours),
       participant_limit: "5",
-      tag_list: "トランプ,東京",
+      tag_list: "宝石の輝き,東京",
       user_id: "2",
+      img: open("#{Rails.root}/db/fixtures/sample10.jpg"),
     },
     {
-      name: "人生ゲーム好きのためのオフ会",
-      text: "人生ゲーム好きのためのオフ会です。人数5人まで！",
+      name: "犯人は踊るオフ会(他ゲームもやるかも)",
+      text: "参加人数5人まで！千代田区〜駅集合！",
       start_time: DateTime.current.tomorrow,
       ending_time: start_time.since(3.hours),
       participant_limit: "5",
-      tag_list: "人生ゲーム,千代田区",
+      tag_list: "犯人は踊る,千代田区",
       user_id: "3",
+      img: open("#{Rails.root}/db/fixtures/sample9.jpg"),
     },
   ]
 )
 
 50.times do |n|
-  name = Faker::Game.title
+  name = ['カルカソンヌ', 'ドミニオン', 'ゴキブリポーカー',
+          'ニムト', 'バトルライン', 'パンデミック', 'ブロックス', 'ラブレター',
+          'ワンナイト人狼', '犯人は踊る', '宝石の輝き']
   state = Faker::Address.state
   participant_limit = rand(2..10)
   user_id = rand(2..User.count)
+  image = open("#{Rails.root}/db/fixtures/sample#{n % 11}.jpg")
   Event.create!(
-    name: "#{name}やろう!",
+    name: "#{name[n % 10]}やろう!",
     text: "#{state}の#{name}好き集まれ!",
     start_time: DateTime.current.tomorrow,
     ending_time: start_time.since(3.hours),
     participant_limit: participant_limit,
     tag_list: "#{name},#{state}",
     user_id: user_id,
+    img: image
   )
 end
 
