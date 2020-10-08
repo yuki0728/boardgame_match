@@ -19,7 +19,7 @@ class Event < ApplicationRecord
   validate :check_number_of_participant_limit
   validates :participant_limit, numericality: { only_integer: true, greater_than: 0 }
 
-  scope :search, -> (search_params) do
+  scope :event_search, -> (search_params) do
     return if search_params.blank?
 
     name_like(search_params[:name]).

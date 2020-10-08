@@ -1,0 +1,30 @@
+<ul>
+  <%= link_to event_path(event) do %>
+    <div class="eventlist">
+      <div class="name">
+        <%= event.name %>
+      </div>
+      <dl class="info">
+        <dt style>
+          <%=  l(event.start_time , format: :long, default: '-') %>
+          -
+          <%=  l(event.ending_time , format: :long, default: '-') %>
+        </dt>
+        <dt style>
+          参加人数
+          <%= event.participations.count %>
+          /
+          <%= event.participant_limit %>
+        </dt>
+      </dl>
+      <div class="text">
+        <%= event.text %>
+      </div>
+      <div class="tag">
+        <% event.tag_list.each do |tag| %>
+          <%= tag %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</ul>
