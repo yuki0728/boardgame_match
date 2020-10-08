@@ -1,12 +1,15 @@
-<%= form_with(scope: :search, url: events_path, method: :get, local: true) do |f| %>
-  <%= f.label :name, 'イベント検索' %>
-  <%= f.text_field :name %>
+<div class="eventserch-box">
+  <span class="title">イベント検索</span>
+  <%= form_with(scope: :event_search, url: events_path, method: :get, local: true) do |f| %>
+    <%= f.label :name, 'イベント検索' %>
+    <%= f.text_field :name , class: 'search_container' %><br>
 
-  <%= f.label :tag_list, 'タグ' %>
-  <%= f.text_field :tag_list %>
+    <%= f.label :tag_list, 'タグ' %>
+    <%= f.text_field :tag_list %><br>
 
-  <%= f.label :date, '日にち' %>
-  <%= f.text_field :date, class: 'date-picker' %>
+    <%= f.label :date, '日にち' %>
+    <%= f.text_field :date, class: 'date-picker' %><br>
 
-  <%= f.submit('検索') %>
-<% end %>
+    <%= f.submit('検索') %>
+  <% end %>
+</div>

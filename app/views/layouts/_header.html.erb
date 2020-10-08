@@ -1,15 +1,47 @@
 <header>
-    <nav>
-      <%= render 'events/search' %>
-      <% if user_signed_in? %>
-        <strong><%= link_to current_user.username, root_path %></strong>
-        <%= link_to 'プロフィール変更', edit_user_registration_path %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-        <%= link_to 'イベント作成', new_event_path %>
-      <% else %>
-        <%= link_to 'サインアップ', new_user_registration_path %>
-        <%= link_to 'ログイン', new_user_session_path %>
-        <%= link_to 'イベント作成', new_event_path %>
-      <% end %>
-    </nav>
+  <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+    <div class='container'>
+      <%= link_to 'Gamatch', root_path, class: 'navbar-brand'%>
+      <button type='button' class='navbar-toggler' 
+              data-toggle='collapse' data-target='#navbarNav' 
+              aria-controls='navbarNav' aria-expanded='false' aria-label='ナビゲーションの切替'>
+        <span class='navbar-toggler-icon'></span>
+    </button>
+      <div class='collapse navbar-collapse' id='navbarNav'>
+        <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <li class='nav-item' >
+              <%= link_to current_user.username, root_path, class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to current_user.username, root_path, class: "d-block d-lg-none nav-link" %>
+            </li>
+            <li class='nav-item' >
+              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "d-block d-lg-none nav-link" %>
+            </li>
+            <li class='nav-item' >
+              <%= link_to 'ログアウト', destroy_user_session_path, class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to 'ログアウト', destroy_user_session_path, class: "d-block d-lg-none nav-link" %>
+            </li>
+            <li class='nav-item' >
+              <%= link_to 'イベント作成', new_event_path, class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to 'イベント作成', new_event_path, class: "d-block d-lg-none nav-link" %>
+            </li>
+          <% else %>
+            <li class='nav-item' >
+              <%= link_to 'サインアップ', new_user_registration_path, class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to 'サインアップ', new_user_registration_path, class: "d-block d-lg-none nav-link" %>
+            </li>
+            <li class='nav-item' >
+              <%= link_to 'ログイン', new_user_session_path, class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to 'ログイン', new_user_session_path, class: "d-block d-lg-none nav-link" %>
+            </li>
+            <li class='nav-item' >
+              <%= link_to 'イベント作成', new_event_path, class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to 'イベント作成', new_event_path, class: "d-block d-lg-none nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+      </ul>
+    </div>
+  </nav>
 </header>

@@ -1,4 +1,3 @@
-@import "bootstrap-sprockets";
 @import "bootstrap";
 
 /* mixins, variables, etc. */
@@ -13,8 +12,9 @@ $gray-medium-light: #eaeaea;
 
 /* universal */
 
+
 body {
-  padding-top: 60px;
+  padding-top: 0px;
 }
 
 section {
@@ -23,6 +23,10 @@ section {
 
 textarea {
   resize: vertical;
+}
+
+.container {
+  width: 90%;
 }
 
 .center {
@@ -58,6 +62,28 @@ p {
   line-height: 1.7em;
 }
 
+ul, ol {
+  color: #1e366a;
+  border: dotted #1e366a 1px;/*ドット 色 太さ*/
+  padding: 0.5em 0.5em 0.5em 2em;
+}
+
+ul li, ol li {
+  line-height: 1.5;
+  padding: 0.5em 0;
+}
+
+.navbar-light .navbar-toggler {
+  border-color: rgba(0,0,0,0);
+}
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+
 /* header */
 
 #logo {
@@ -84,26 +110,101 @@ footer {
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #777;
+
+  a {
+    color: #555;
+  }
+
+  a:hover {
+    color: #222;
+  }
+
+  small {
+    float: left;
+  }
+
+  ul {
+    float: right;
+    list-style: none;
+
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
 }
 
-footer a {
-  color: #555;
+/* main */
+
+.eventlist{
+  &-box{
+    padding-top: 10px;
+  }
+
+  .item{
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    padding-bottom: 4px;
+  }
+
+  .box{
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    padding-bottom: 4px;
+  }
+
+  .name{
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    padding-bottom: 4px;
+  }
+
+  .info {
+    overflow: hidden;
+    font-size: 15px;
+    margin: 4px 0;
+    clear: both;
+  }
+
+  .text{
+    font-size: 11px;
+    line-height: 16px;
+    margin-top: 8px;
+  }
+
+  .tag{
+    font-size: 12px;
+  }
+
 }
 
-footer a:hover {
-  color: #222;
-}
+.eventserch {
+  &-box {
+    position: relative;
+    margin: 2em 0;
+    padding: 0.5em 1em;
+    border: solid 3px #95ccff;
+    border-radius: 8px;
 
-footer small {
-  float: left;
-}
+    p {
+      margin: 0; 
+      padding: 0;
+    }
 
-footer ul {
-  float: right;
-  list-style: none;
-}
-
-footer ul li {
-  float: left;
-  margin-left: 15px;
+    .title {
+      position: absolute;
+      display: inline-block;
+      top: -13px;
+      left: 10px;
+      padding: 0 9px;
+      line-height: 1;
+      font-size: 19px;
+      background: #FFF;
+      color: #95ccff;
+      font-weight: bold;
+    }
+  }
 }

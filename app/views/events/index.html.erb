@@ -1,17 +1,10 @@
-<% @events.each do |event| %>
-  <li>
-    <%= link_to event_path(event) do %>
-      <%= event.name %>
-      <%= event.text %>
-      <%=  l(event.start_time , format: :long, default: '-') %>
-      <%=  l(event.ending_time , format: :long, default: '-') %>
-      参加人数
-      <%= event.participations.count %>
-      /
-      <%= event.participant_limit %>
-      <% event.tag_list.each do |tag| %>
-        <%= tag %>
-      <% end %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'search' %>
+  </div>
+  <div class="col-md-9 eventlist-box">
+    <% @events.each do |event| %>
+      <%= render 'feed', event: event %>
     <% end %>
-  </li>
-<% end %>
+  </div>
+</div>
