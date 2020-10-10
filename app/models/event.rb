@@ -33,11 +33,11 @@ class Event < ApplicationRecord
   scope :name_like, -> (name) { where('name LIKE ?', "%#{name}%") if name.present? }
   scope :find_by_tag, -> (tags) { tagged_with(tags, any: true) if tags.present? }
   scope :find_by_start_time, -> (date) {
-                                if date.present?
-                                  where(start_time: (date.to_date.midnight - 1.day)..date.to_date.midnight).
-                                    or(where(ending_time: (date.to_date.midnight - 1.day)..date.to_date.midnight))
-                                end
-                              }
+                               if date.present?
+                                 where(start_time: (date.to_date.midnight - 1.day)..date.to_date.midnight).
+                                   or(where(ending_time: (date.to_date.midnight - 1.day)..date.to_date.midnight))
+                               end
+                             }
 
   def owner?(user)
     user_id.equal? user.id
