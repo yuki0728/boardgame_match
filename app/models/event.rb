@@ -34,8 +34,8 @@ class Event < ApplicationRecord
   scope :find_by_tag, -> (tags) { tagged_with(tags, any: true) if tags.present? }
   scope :find_by_start_time, -> (date) {
                                if date.present?
-                                 where(start_time: (date.to_date.midnight - 1.day)..date.to_date.midnight).
-                                   or(where(ending_time: (date.to_date.midnight - 1.day)..date.to_date.midnight))
+                                 where(start_time: date.to_date.midnight..(date.to_date.midnight + 1.day)).
+                                   or(where(ending_time: date.to_date.midnight..(date.to_date.midnight + 1.day)))
                                end
                              }
 
