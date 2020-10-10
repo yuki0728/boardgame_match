@@ -69,8 +69,8 @@ Event.create!(
   user_id = rand(2..User.count)
   image = open("#{Rails.root}/db/fixtures/sample#{n % 11}.jpg")
   Event.create!(
-    name: "#{name[n % 10]}やろう!",
-    text: "#{state}の#{name}好き集まれ!",
+    name: "#{name[n % 11]}やろう!",
+    text: "#{state}の#{name[n % 11]}好き集まれ!",
     start_time: DateTime.current.tomorrow,
     ending_time: start_time.since(3.hours),
     participant_limit: participant_limit,
