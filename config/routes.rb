@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
   root 'events#index'
 
-  get 'events/index'
-  get 'events/show'
-  get 'pages/show'
-
   resources :events do
     resources :participations, only: [:create, :destroy]
   end
+
+  resources :users, only: [:show]
 
   devise_for :users
   # app/views/users/shared/_links.html.erb (リンク用パーシャル)
