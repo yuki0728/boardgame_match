@@ -138,44 +138,41 @@ footer {
 
 .eventlist{
   &-box{
-    padding-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #1e366a;
+    border-top: solid #6b6b6b 0.5px;
+    border-bottom: solid #6b6b6b 0.5px;
+    padding: 1em 0 1em 1.5em;
+    display: block;
+    overflow: hidden;
   }
 
-  .item{
+  &-img{
+    margin: 160px;
+  }
+
+  &-name{
     font-size: 16px;
     font-weight: bold;
     line-height: 20px;
     padding-bottom: 4px;
   }
 
-  .box{
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 20px;
-    padding-bottom: 4px;
-  }
-
-  .name{
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 20px;
-    padding-bottom: 4px;
-  }
-
-  .info {
+  &-info {
     overflow: hidden;
     font-size: 15px;
     margin: 4px 0;
     clear: both;
   }
 
-  .text{
+  &-text{
     font-size: 11px;
     line-height: 16px;
     margin-top: 8px;
   }
 
-  .tag{
+  &-tag{
     font-size: 12px;
   }
 

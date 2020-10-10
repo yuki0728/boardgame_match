@@ -1,33 +1,39 @@
-<ul>
-  <%= link_to event_path(event) do %>
-    <div class="eventlist">
-      <% if event.img? %>
-        <%= image_tag event.img.thumb.url %>
-      <% end %>
-      <div class="name">
-        <%= event.name %>
-      </div>
-      <dl class="info">
-        <dt style>
-          <%=  l(event.start_time , format: :long, default: '-') %>
-          -
-          <%=  l(event.ending_time , format: :long, default: '-') %>
-        </dt>
-        <dt style>
-          参加人数
-          <%= event.participations.count %>
-          /
-          <%= event.participant_limit %>
-        </dt>
-      </dl>
-      <div class="text">
-        <%= event.text %>
-      </div>
-      <div class="tag">
-        <% event.tag_list.each do |tag| %>
-          <%= tag %>
-        <% end %>
-      </div>
-    <% end %>
+<%= link_to event_path(event) do %>
+  <div class="eventlist-box">
+    <div class="eventlist-name card-title">
+      <%= event.name %>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-md-3 my-auto">
+          <% if event.img? %>
+            <%= image_tag event.img.thumb.url, class: "card-img" %>
+          <% end %>
+        </div>
+        <div class="col-md-9">
+          <div class="card-body">
+            <dl class="eventlist-info">
+              <dt style>
+                <%=  l(event.start_time , format: :long, default: '-') %>
+                -
+                <%=  l(event.ending_time , format: :long, default: '-') %>
+              </dt>
+              <dt style>
+                参加人数
+                <%= event.participations.count %>
+                /
+                <%= event.participant_limit %>
+              </dt>
+            </dl>
+            <div class="eventlist-text">
+              <%= event.text %>
+            </div>
+            <div class="eventlist-tag">
+              <% event.tag_list.each do |tag| %>
+                <%= tag %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
-</ul>
+<% end %>

@@ -2,7 +2,7 @@
   <div class="col-md-3">
     <%= render 'search' %>
   </div>
-  <div class="col-md-9 eventlist-box">
+  <div class="col-md-9">
     <% @events.each do |event| %>
       <%= render 'feed', event: event %>
     <% end %>
