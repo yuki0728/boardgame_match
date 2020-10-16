@@ -1,0 +1,19 @@
+<div class="userlist-box">
+  <div class="userlist-title">
+    参加者
+  </div>
+  <ul>
+    <% event.participate_users.each do |user| %>
+      <%= link_to user_path(user.id) do %>
+        <li>
+          <% if user==event.user then %>
+            <i class="fa 	fa-star fa-la "></i>
+            <%= user.username %>
+          <%else%>
+            <%= user.username %>
+          <% end %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

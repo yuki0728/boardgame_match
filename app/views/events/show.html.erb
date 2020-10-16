@@ -1,22 +1,36 @@
-<%= @event.name %>
-<% @event.tag_list.each do |tag| %>
-  <%= tag %>
-<% end %>
-<%= @event.text %>
-<%=  l(@event.start_time , format: :long, default: '-') %>
-<%=  l(@event.ending_time , format: :long, default: '-') %>
-
-<b>参加人数:</b> 
-<%= @event.participations.count %>
-/
-<%= @event.participant_limit %>
-
-<% if @event.participated_by?(current_user) %>
-  <p><%=link_to "イベント参加取り消し", event_participation_path(@event.id), method: :delete %></p>
-<% else %>
-  <p><%=link_to "イベント参加", event_participations_path(@event.id), method: :post %></p>
-<% end %>
-<% if @event.owner?(current_user) %>
-  <%= link_to "イベント編集", edit_event_path(@event) %>
-  <%= link_to "イベント削除", event_path ,method: :delete %>
-<% end %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'events/participantion_button', event: @event %>
+    <%= render 'events/participant_list', event: @event %>
+  </div>
+  <div class="col-md-9">
+    <div class="eventshow-box">
+      <div class="eventshow-name">
+        <%= @event.name %>
+      </div>
+      <div class="eventshow-time">
+        活動時間:
+        <%= render 'events/time', event: @event %>
+      </div>
+      <div class="eventshow-tag">
+        <% @event.tag_list.each do |tag| %>
+          <span class="badge badge-primary">
+            <%= link_to tag, events_path(tag_name: tag), class: "text-white" %>
+          </span>
+        <% end %>
+      </div>
+      <div class="eventshow-img">
+        <% if @event.img? %>
+          <%= image_tag @event.img.url ,class:"img-fluid " %>
+        <% end %>
+      </div>
+      <div class="eventshow-text">
+        <%= @event.text %>
+      </div>
+      <% if @event.owner?(current_user) %>
+        <%= link_to "イベント編集", edit_event_path(@event) %>
+        <%= link_to "イベント削除", event_path ,method: :delete %>
+      <% end %>
+    </div>
+  </div>
+</div>

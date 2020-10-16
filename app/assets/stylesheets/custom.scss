@@ -1,8 +1,9 @@
 @import "bootstrap";
+@import "font-awesome";
 
 /* mixins, variables, etc. */
 
-$gray-medium-light: #eaeaea;
+$gray: #6b6b6b;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -63,14 +64,9 @@ p {
 }
 
 ul, ol {
-  color: #1e366a;
-  border: dotted #1e366a 1px;/*ドット 色 太さ*/
-  padding: 0.5em 0.5em 0.5em 2em;
-}
-
-ul li, ol li {
-  line-height: 1.5;
-  padding: 0.5em 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .navbar-light .navbar-toggler {
@@ -136,6 +132,67 @@ footer {
 
 /* main */
 
+/* user */
+
+.userlist{
+  &-box{
+    margin: 20px 0;
+    background: #ffffff;
+    border: solid 1px;
+    padding: 0px;
+    li {
+      padding: 15px 20px;
+      margin: 0;
+      border-bottom: solid #6b6b6b 0.5px;
+    }
+  }
+
+  &-title{
+    font-size: 1em;
+    background: #12126f;
+    padding: 4px;
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+}
+
+.sidebar{
+  &-box{
+    margin: 20px 0;
+    background: #ffffff;
+    border: solid 1px;
+    padding: 0px;
+    li {
+      padding: 15px 20px;
+      margin: 0;
+      border-bottom: solid #6b6b6b 0.5px;
+    }
+  }
+
+  &-title{
+    font-size: 1em;
+    background: #12126f;
+    padding: 4px;
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+}
+
+.participant{
+  &-count{
+    font-size: 1.5em;
+    padding: 4px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+  }
+}
+
+/* event */
 .eventlist{
   &-box{
     font-size: 16px;
@@ -204,4 +261,44 @@ footer {
       font-weight: bold;
     }
   }
+}
+
+.eventshow{
+  &-box{
+    font-size: 16px;
+    font-weight: bold;
+    color: #1e366a;
+    border-top: solid #6b6b6b 0.5px;
+    border-bottom: solid #6b6b6b 0.5px;
+    padding: 1em 0 1em 1.5em;
+    display: block;
+    overflow: hidden;
+  }
+
+  &-tag{
+    font-size: 20px;
+  }
+
+  &-time{
+    width: 100%;
+  }
+
+  &-name{
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 20px;
+    margin: 20px 0 10px 0;
+  }
+
+  &-img{
+    width: 100%;
+  }
+
+  &-text{
+    font-size: 20px;
+    line-height: 16px;
+    margin-top: 8px;
+    margin: 20px 0;
+  }
+
 }
