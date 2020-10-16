@@ -19,7 +19,9 @@ class EventsController < ApplicationController
 
   def index
     @search_params = event_search_params
-    if @search_params == {}
+    if params[:tag_name]
+      @events = Event.tagged_with("#{params[:tag_name]}")
+    elsif @search_params == {}
       # 検索していない場合でもイベント一覧は表示する。
       @events = Event.all
     else

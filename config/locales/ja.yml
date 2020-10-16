@@ -211,6 +211,6 @@ ja:
     am: 午前
     formats:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒"
-      long: "%Y/%m/%d %H:%M"
-      short: "%H:%M"
+      long: "%Y年%m月%d日 %H時%M分"
+      short: "%H時%M分"
     pm: 午後

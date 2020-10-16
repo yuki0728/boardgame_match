@@ -5,8 +5,6 @@ Rails.application.routes.draw do
     resources :participations, only: [:create, :destroy]
   end
 
-  resources :users, only: [:show]
-
   devise_for :users
   # app/views/users/shared/_links.html.erb (リンク用パーシャル)
   # app/views/users/confirmations/new.html.erb (認証メールの再送信画面)
@@ -20,4 +18,6 @@ Rails.application.routes.draw do
   # app/views/users/mailer/password_change.html.erb （メール用パスワード変更完了文）
   # app/views/users/mailer/reset_password_instructions.html.erb (メール用パスワードリセット文)
   # app/views/users/mailer/unlock_instructions.html.erb (メール用ロック解除文)
+
+  resources :users, only: [:show]
 end

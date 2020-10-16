@@ -1,0 +1,7 @@
+<%=  l(event.start_time , format: :long, default: '-') %>
+〜
+<% if event.start_time.to_date == event.start_time.to_date %>
+  <%=  l(event.ending_time , format: :short, default: '-') %>
+<% else %>
+  <%=  l(event.ending_time , format: :long, default: '-') %>
+<% end %>
