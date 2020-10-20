@@ -11,11 +11,22 @@ $gray: #6b6b6b;
   box-sizing:         border-box;
 }
 
+@mixin comment_format {
+  display: inline-block;
+  position: relative;
+  padding: 5px 10px;
+  margin: 3px;
+  max-width: 350px;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
 /* universal */
 
 
 body {
   padding-top: 0px;
+  background-color: #dadada;
 }
 
 section {
@@ -40,6 +51,10 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+}
+
+a{
+  color:#000000;
 }
 
 h1 {
@@ -134,28 +149,9 @@ footer {
 
 /* user */
 
-.userlist{
-  &-box{
-    margin: 20px 0;
-    background: #ffffff;
-    border: solid 1px;
-    padding: 0px;
-    li {
-      padding: 15px 20px;
-      margin: 0;
-      border-bottom: solid #6b6b6b 0.5px;
-    }
-  }
-
-  &-title{
-    font-size: 1em;
-    background: #12126f;
-    padding: 4px;
-    text-align: center;
-    color: #FFF;
-    font-weight: bold;
-    letter-spacing: 0.05em;
-  }
+.main{
+  background-color: #ffffff;
+  margin-top: 20px;
 }
 
 .sidebar{
@@ -180,6 +176,10 @@ footer {
     font-weight: bold;
     letter-spacing: 0.05em;
   }
+
+  &-search{
+    padding: 5px;
+  }
 }
 
 .participant{
@@ -196,9 +196,8 @@ footer {
 .eventlist{
   &-box{
     font-size: 16px;
-    font-weight: bold;
+
     color: #1e366a;
-    border-top: solid #6b6b6b 0.5px;
     border-bottom: solid #6b6b6b 0.5px;
     padding: 1em 0 1em 1.5em;
     display: block;
@@ -230,37 +229,9 @@ footer {
   }
 
   &-tag{
-    font-size: 12px;
+    font-size: 15px;
   }
 
-}
-
-.eventserch {
-  &-box {
-    position: relative;
-    margin: 2em 0;
-    padding: 0.5em 1em;
-    border: solid 3px #95ccff;
-    border-radius: 8px;
-
-    p {
-      margin: 0; 
-      padding: 0;
-    }
-
-    .title {
-      position: absolute;
-      display: inline-block;
-      top: -13px;
-      left: 10px;
-      padding: 0 9px;
-      line-height: 1;
-      font-size: 19px;
-      background: #FFF;
-      color: #95ccff;
-      font-weight: bold;
-    }
-  }
 }
 
 .eventshow{
@@ -268,7 +239,6 @@ footer {
     font-size: 16px;
     font-weight: bold;
     color: #1e366a;
-    border-top: solid #6b6b6b 0.5px;
     border-bottom: solid #6b6b6b 0.5px;
     padding: 1em 0 1em 1.5em;
     display: block;
@@ -301,4 +271,36 @@ footer {
     margin: 20px 0;
   }
 
+}
+
+.comment{
+  &-box{
+    padding: 20px 10px;
+    margin: 15px auto;
+    font-size: 14px;
+  }
+
+  &-userName{
+    width: 100;
+  }
+
+  &-otherUser{
+    margin: 3px 0;
+    text-align: left;
+  
+    p{
+      @include comment_format;
+      background: #edf1ee;
+    }
+  }
+
+  &-currentUser{
+    margin: 3px 0;
+    text-align: right;
+
+    p {
+      @include comment_format;
+      background: #30e852;
+    }
+  }
 }

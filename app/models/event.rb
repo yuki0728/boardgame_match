@@ -2,6 +2,9 @@ class Event < ApplicationRecord
   # イベント主催者
   belongs_to :user
 
+  # コメント
+  has_many :comments, dependent: :destroy
+
   # イベント参加者
   has_many :participations, dependent: :destroy
   has_many :participate_users, through: :participations, source: :user
