@@ -17,7 +17,12 @@
       <%= f.text_field :tag_list %><br>
 
       <%= f.label :date, '日にち' %>
-      <%= f.text_field :date, class: 'date-picker' %><br>
+      <div class="input-group" data-target-input="nearest">
+        <%= f.text_field :date, id: "date", class: "form-control datepicker", data: { target: '#date'} %>
+        <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i></div><br>
+        </div>
+      </div>
 
       <%= f.submit('検索') %>
     <% end %>

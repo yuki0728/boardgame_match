@@ -5,10 +5,20 @@
 <%= f.text_field :text, class: 'form-control' %>
 
 <%= f.label :start_time %>
-<%= f.datetime_select :start_time, use_month_numbers: true, class: 'time-box' %>
+<div class="input-group" data-target-input="nearest">
+  <%= f.text_field :start_time, id: "start_time", class: "form-control datetimepicker", data: { target: '#start_time'} %>
+  <div class="input-group-append" data-target="#start_time" data-toggle="datetimepicker">
+    <div class="input-group-text"><i class="fa fa-calendar"></i></div><br>
+  </div>
+</div>
 
 <%= f.label :ending_time %>
-<%= f.datetime_select :ending_time, use_month_numbers: true, class: 'time-box' %>
+<div class="input-group" data-target-input="nearest">
+  <%= f.text_field :ending_time, id: "ending_time", class: "form-control datetimepicker", data: { target: '#ending_time'} %>
+  <div class="input-group-append" data-target="#ending_time" data-toggle="datetimepicker">
+    <div class="input-group-text"><i class="fa fa-calendar"></i></div><br>
+  </div>
+</div>
 
 <%= f.label :participant_limit %>
 <%= f.number_field :participant_limit %>

@@ -49,10 +49,6 @@ class Event < ApplicationRecord
       order(start_time: :ASC)
     when 'old'
       order(start_time: :DESC)
-    when 'likes'
-      find(Favorite.group(:post_id).order(Arel.sql('count(post_id) desc')).pluck(:post_id))
-    when 'dislikes'
-      find(Favorite.group(:post_id).order(Arel.sql('count(post_id) asc')).pluck(:post_id))
     end
   }
 
