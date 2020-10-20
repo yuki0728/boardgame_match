@@ -3,6 +3,7 @@
   <% comments.each do |comment| %>
     <% if current_user==comment.user then %>
       <div class='comment-currentUser'>
+        <%= link_to "削除", event_comment_path( id:comment.id, event_id: comment.event.id), method: :delete %>
         <p><%= comment.content %></p>
         <%= comment.user.username %>
       </div>

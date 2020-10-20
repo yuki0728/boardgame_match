@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :events
 
   # コメント
-  has_many :commnets
+  has_many :comments
 
   # 参加イベント
   has_many :participations, dependent: :destroy
