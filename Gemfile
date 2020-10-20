@@ -48,11 +48,19 @@ gem 'acts-as-taggable-on'
 gem 'validates_timeliness'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'font-awesome-rails'
+
+# 画像
 gem 'carrierwave'
 gem 'rmagick'
-gem 'font-awesome-rails'
+
+# ページネイション
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+
+# datetimepicker
+gem 'momentjs-rails'
+gem 'bootstrap4-datetime-picker-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

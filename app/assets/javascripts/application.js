@@ -14,11 +14,14 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery
-//= require jquery-ui/widgets/datepicker
-//= require jquery-ui/i18n/datepicker-ja
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap-sprockets
 //= require_tree .
-//= require activestorage
+
+//= require jquery3
+//= require popper
+//= require moment
+//= require moment/ja.js
+//= require tempusdominus-bootstrap-4.js
