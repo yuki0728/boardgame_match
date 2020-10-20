@@ -10,6 +10,9 @@ class User < ApplicationRecord
   # 主催イベント
   has_many :events
 
+  # コメント
+  has_many :commnets
+
   # 参加イベント
   has_many :participations, dependent: :destroy
   has_many :participate_events, through: :participations, source: :event

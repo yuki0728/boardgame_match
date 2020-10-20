@@ -1,0 +1,16 @@
+コメント一覧
+<div class='comment-box'>
+  <% comments.each do |comment| %>
+    <% if current_user==comment.user then %>
+      <div class='comment-currentUser'>
+        <p><%= comment.content %></p>
+        <%= comment.user.username %>
+      </div>
+    <% else %>
+      <div class='comment-otherUser'>
+        <%= comment.user.username %>
+        <p><%= comment.content %></a></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

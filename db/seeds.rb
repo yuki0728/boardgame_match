@@ -60,13 +60,17 @@ Event.create!(
   ]
 )
 
+name = ['カルカソンヌ', 'ドミニオン', 'ゴキブリポーカー',
+        'ニムト', 'バトルライン', 'パンデミック', 'ブロックス', 'ラブレター',
+        'ワンナイト人狼', '犯人は踊る', '宝石の輝き']
+
+comment = ['はじめまして', '誰かいますか？', 'おーい']
+
 50.times do |n|
-  name = ['カルカソンヌ', 'ドミニオン', 'ゴキブリポーカー',
-          'ニムト', 'バトルライン', 'パンデミック', 'ブロックス', 'ラブレター',
-          'ワンナイト人狼', '犯人は踊る', '宝石の輝き']
   state = Faker::Address.state
   participant_limit = rand(2..10)
-  user_id = rand(2..User.count)
+  user_id = rand(7..User.count)
+  event_id = Event.count + 1
   image = open("#{Rails.root}/db/fixtures/sample#{n % 11}.jpg")
   Event.create!(
     name: "#{name[n % 11]}やろう!",
@@ -74,21 +78,33 @@ Event.create!(
     start_time: DateTime.current.tomorrow,
     ending_time: start_time.since(3.hours),
     participant_limit: participant_limit,
-    tag_list: "#{name},#{state}",
+    tag_list: "#{name[n % 11]},#{state}",
     user_id: user_id,
-    img: image
+    img: image,
   )
+
+  3.times do |m|
+    Comment.create(
+      user_id: user_id,
+      event_id: event_id,
+      created_at: DateTime.current.since(m.seconds),
+      content: "#{comment[m]}"
+    )
+  end
+  Participation.create!(user_id: user_id, event_id: event_id)
 end
 
 # 参加者
-(4..20).each do |i|
-  Participation.create!(user_id: 1, event_id: i)
+Participation.create!(user_id: 1, event_id: 1)
+
+(4..20).each do |n|
+  Participation.create!(user_id: 1, event_id: n)
 end
 
-(2..6).each do |i|
-  Participation.create!(user_id: i, event_id: 2)
+(2..6).each do |n|
+  Participation.create!(user_id: n, event_id: 2)
 end
 
-(2..5).each do |i|
-  Participation.create!(user_id: i, event_id: 3)
+(2..5).each do |n|
+  Participation.create!(user_id: n, event_id: 3)
 end
