@@ -30,17 +30,31 @@ class Event < ApplicationRecord
 
     name_like(search_params[:name]).
       find_by_tag(search_params[:tag_list]).
-      find_by_start_time(search_params[:date])
+      find_by_start_time(search_params[:date]).
+      sorting(search_params[:keyword])
   end
 
   scope :name_like, -> (name) { where('name LIKE ?', "%#{name}%") if name.present? }
   scope :find_by_tag, -> (tags) { tagged_with(tags, any: true) if tags.present? }
   scope :find_by_start_time, -> (date) {
-                               if date.present?
-                                 where(start_time: date.to_date.midnight..(date.to_date.midnight + 1.day)).
-                                   or(where(ending_time: date.to_date.midnight..(date.to_date.midnight + 1.day)))
-                               end
-                             }
+    if date.present?
+      where(start_time: date.to_date.midnight..(date.to_date.midnight + 1.day)).
+        or(where(ending_time: date.to_date.midnight..(date.to_date.midnight + 1.day)))
+    end
+  }
+
+  scope :sorting, -> (selection) {
+    case selection
+    when 'new'
+      order(start_time: :ASC)
+    when 'old'
+      order(start_time: :DESC)
+    when 'likes'
+      find(Favorite.group(:post_id).order(Arel.sql('count(post_id) desc')).pluck(:post_id))
+    when 'dislikes'
+      find(Favorite.group(:post_id).order(Arel.sql('count(post_id) asc')).pluck(:post_id))
+    end
+  }
 
   def owner?(user)
     user_id.equal? user.id

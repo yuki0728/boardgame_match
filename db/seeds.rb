@@ -71,15 +71,17 @@ comment = ['はじめまして', '誰かいますか？', 'おーい']
   participant_limit = rand(2..10)
   user_id = rand(7..User.count)
   event_id = Event.count + 1
+  start_time = DateTime.current.tomorrow + rand(1..100).hours
   image = open("#{Rails.root}/db/fixtures/sample#{n % 11}.jpg")
   Event.create!(
     name: "#{name[n % 11]}やろう!",
     text: "#{state}の#{name[n % 11]}好き集まれ!",
-    start_time: DateTime.current.tomorrow,
+    start_time: start_time,
     ending_time: start_time.since(3.hours),
     participant_limit: participant_limit,
     tag_list: "#{name[n % 11]},#{state}",
     user_id: user_id,
+    created_at: DateTime.current.since(n.seconds),
     img: image,
   )
 

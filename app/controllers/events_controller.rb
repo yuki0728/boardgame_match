@@ -48,13 +48,10 @@ class EventsController < ApplicationController
     end
   end
 
-  def destroy
+  def search
     @event = Event.find(params[:id])
-    if @event.destroy
-      redirect_to events_url
-    else
-      redirect_to events_url
-    end
+    @comments = @event.comments.order(created_at: "DESC")
+    @comment = Comment.new
   end
 
   private
@@ -65,7 +62,7 @@ class EventsController < ApplicationController
   end
 
   def event_search_params
-    params.fetch(:event_search, {}).permit(:name, :tag_list, :date)
+    params.fetch(:event_search, {}).permit(:name, :tag_list, :date, :keyword)
   end
 
   def correct_user
