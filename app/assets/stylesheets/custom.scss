@@ -94,6 +94,11 @@ input, textarea, select, .uneditable-input {
   margin-bottom: 15px;
 }
 
+.pagination {
+  justify-content: center;
+  margin: 15px 0;
+}
+
 
 /* header */
 
@@ -200,6 +205,7 @@ footer {
     color: #1e366a;
     border-bottom: solid #6b6b6b 0.5px;
     padding: 1em 0 1em 1.5em;
+    margin: 0 0 5px 0;
     display: block;
     overflow: hidden;
   }

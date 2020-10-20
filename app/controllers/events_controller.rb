@@ -20,18 +20,18 @@ class EventsController < ApplicationController
   def index
     @search_params = event_search_params
     if params[:tag_name]
-      @events = Event.tagged_with("#{params[:tag_name]}")
+      @events = Event.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
     elsif @search_params == {}
       # 検索していない場合でもイベント一覧は表示する。
-      @events = Event.all
+      @events = Event.page(params[:page]).per(10)
     else
-      @events = Event.event_search(@search_params)
+      @events = Event.event_search(@search_params).page(params[:page]).per(10)
     end
   end
 
   def show
     @event = Event.find(params[:id])
-    @comments = @event.comments.order(created_at: "DESC")
+    @comments = @event.comments.order(created_at: "DESC").page(params[:page]).per(30)
     @comment = Comment.new
   end
 
