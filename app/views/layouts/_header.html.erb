@@ -11,32 +11,32 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li class='nav-item' >
-              <%= link_to current_user.username, user_path(current_user.id), class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to current_user.username, user_path(current_user.id), class: "d-none d-lg-block nav-link rounded-pill" %>
               <%= link_to current_user.username, user_path(current_user.id), class: "d-block d-lg-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "d-none d-lg-block nav-link rounded-pill" %>
               <%= link_to 'プロフィール変更', edit_user_registration_path, class: "d-block d-lg-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to 'ログアウト', destroy_user_session_path, class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to 'ログアウト', destroy_user_session_path, class: "d-none d-lg-block nav-link rounded-pill" %>
               <%= link_to 'ログアウト', destroy_user_session_path, class: "d-block d-lg-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to 'イベント作成', new_event_path, class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to 'イベント作成', new_event_path, class: "d-none d-lg-block nav-link rounded-pill" %>
               <%= link_to 'イベント作成', new_event_path, class: "d-block d-lg-none nav-link" %>
             </li>
           <% else %>
             <li class='nav-item' >
-              <%= link_to 'サインアップ', new_user_registration_path, class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to 'サインアップ', new_user_registration_path, class: "d-none d-lg-block nav-link rounded-pill" %>
               <%= link_to 'サインアップ', new_user_registration_path, class: "d-block d-lg-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to 'ログイン', new_user_session_path, class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to 'ログイン', new_user_session_path, class: "d-none d-lg-block nav-link rounded-pill" %>
               <%= link_to 'ログイン', new_user_session_path, class: "d-block d-lg-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to 'イベント作成', new_event_path, class: "d-none d-lg-block btn btn-primary rounded-pill" %>
+              <%= link_to 'イベント作成', new_event_path, class: "d-none d-lg-block nav-link rounded-pill" %>
               <%= link_to 'イベント作成', new_event_path, class: "d-block d-lg-none nav-link" %>
             </li>
           <% end %>
