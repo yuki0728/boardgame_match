@@ -1,5 +1,6 @@
 @import "bootstrap";
 @import "font-awesome";
+@import "tempusdominus-bootstrap-4.css";
 
 /* mixins, variables, etc. */
 
@@ -22,7 +23,6 @@ $gray: #6b6b6b;
 }
 
 /* universal */
-
 
 body {
   padding-top: 0px;
@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a{
-  color:#000000;
+  color: #000000;
 }
 
 h1 {
@@ -101,6 +101,12 @@ input, textarea, select, .uneditable-input {
 
 
 /* header */
+
+header {
+  a{
+    color: #fff;
+  }
+}
 
 #logo {
   float: left;
@@ -151,10 +157,6 @@ footer {
 }
 
 /* main */
-
-.carendear-positon {
-  position: relative;
-}
 
 /* user */
 
