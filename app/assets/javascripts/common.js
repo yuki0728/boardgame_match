@@ -6,3 +6,7 @@ $(document).on('turbolinks:load', function(){
     format : "YYYY/MM/DD HH:mm"
   });
 });
+
+$(function(){
+  setTimeout("$('.time-limit').fadeOut('slow')", 3000) 
+})
