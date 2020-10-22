@@ -4,9 +4,11 @@
     <%= render 'search' %>
   </div>
   <div class="col-md-9">
-    <% @events.each do |event| %>
-      <%= render 'feed', event: event %>
-    <% end %>
+    <div class="row">
+      <% @events.each do |event| %>
+        <%= render 'feed', event: event %>
+      <% end %>
+    </div>
     <%= paginate @events %>
   </div>
 </div>

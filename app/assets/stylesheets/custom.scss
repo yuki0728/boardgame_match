@@ -99,14 +99,21 @@ input, textarea, select, .uneditable-input {
   margin: 15px 0;
 }
 
+.fly {
+  box-shadow: 0 0 3px 0 rgba(0,0,0,.12), 0 2px 3px 0 rgba(0,0,0,.22);
+  transition: .3s;
+  
+  &:hover {
+    box-shadow: 0 15px 30px -5px rgba(0,0,0,.15), 0 0 5px rgba(0,0,0,.1);
+    transform: translateY(-4px);
+  }
 
-/* header */
-
-header {
   a{
-    color: #fff;
+    text-decoration: none;
   }
 }
+
+/* header */
 
 #logo {
   float: left;
@@ -162,12 +169,12 @@ footer {
 
 .main{
   background-color: #ffffff;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 
 .sidebar{
   &-box{
-    margin: 20px 0;
+    margin-bottom: 20px;
     background: #ffffff;
     border: solid 1px;
     padding: 0px;
@@ -209,15 +216,16 @@ footer {
     font-size: 16px;
 
     color: #1e366a;
-    border-bottom: solid #6b6b6b 0.5px;
-    padding: 1em 0 1em 1.5em;
-    margin: 0 0 5px 0;
+    border: solid #6b6b6b 1px;
+    margin-bottom: 20px;
     display: block;
     overflow: hidden;
   }
 
   &-img{
-    margin: 160px;
+    display: block;
+    height: 50;
+    border-bottom: solid #6b6b6b 1px;
   }
 
   &-name{
@@ -225,6 +233,7 @@ footer {
     font-weight: bold;
     line-height: 20px;
     padding-bottom: 4px;
+    border-bottom: solid #6b6b6b 1px;
   }
 
   &-info {
