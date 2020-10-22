@@ -11,8 +11,9 @@ class EventsController < ApplicationController
     @event = Event.create(events_params)
     @event.user_id = current_user.id
     if @event.save
-      redirect_to action: :show, id: @event.id
+      redirect_to @event, success: "イベントを作成しました"
     else
+      flash.now[:danger] = 'イベントの作成に失敗しました'
       render :new
     end
   end
@@ -42,11 +43,23 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(events_params)
-      redirect_to @event
+      redirect_to @event, success: "イベントを更新しました"
     else
+      flash.now[:danger] = 'イベントの更新に失敗しました'
       render :edit
     end
   end
+
+  def destroy
+    @event = Event.find(params[:id])
+    if @event.destroy
+      redirect_to root_path, success: "イベントを削除しました"
+    else
+      flash.now[:danger] = 'イベントの削除に失敗しました'
+      render :show
+    end
+  end
+
 
   def search
     @event = Event.find(params[:id])
