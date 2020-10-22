@@ -25,13 +25,13 @@ class EventsController < ApplicationController
       # 検索していない場合でもイベント一覧は表示する。
       @events = Event.page(params[:page]).per(10)
     else
-      @events = Event.event_search(@search_params).page(params[:page]).per(10)
+      @events = Event.event_search(@search_params).page(params[:page]).per(MAX_DISPLAY_EVENTS)
     end
   end
 
   def show
     @event = Event.find(params[:id])
-    @comments = @event.comments.order(created_at: "DESC").page(params[:page]).per(30)
+    @comments = @event.comments.order(created_at: "DESC").page(params[:page]).per(MAX_DISPLAY_COMMENTS)
     @comment = Comment.new
   end
 
