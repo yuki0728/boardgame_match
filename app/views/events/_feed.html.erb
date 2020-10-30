@@ -1,8 +1,13 @@
 <div class="col-sm-6">
   <div class="eventlist-box fly">
     <%= link_to event_path(event) do %>
-      <div class="eventlist-name card-title">
-        <%= event.name %>
+      <div class="card-title">
+        <div class="eventlist-name">
+          <%= event.name %>
+        </div>
+        <div class="eventlist-owner">
+          <%= event.user.username %>
+        </div>
       </div>
       <div class="eventlist-img">
         <% if event.img? %>
