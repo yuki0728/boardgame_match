@@ -5,6 +5,7 @@
 /* mixins, variables, etc. */
 
 $gray: #6b6b6b;
+$eventlist_color: #2e2379;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -61,7 +62,7 @@ h1 {
     position: absolute;
     content: " ";
     display: block;
-    border-bottom: solid 3px #5472cd;
+    border-bottom: solid 3px #ƒ;
     bottom: -3px;
     width: 20%;
   }
@@ -227,39 +228,48 @@ input, textarea, select, .uneditable-input {
 .eventlist{
   &-box{
     font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
 
     color: #1e366a;
-    border: solid #6b6b6b 1px;
+    border: solid $eventlist_color 2px;
     margin-bottom: 20px;
     display: block;
     overflow: hidden;
+    border-radius: 3px;
   }
 
   &-img{
     display: block;
-    height: 50;
-    border-bottom: solid #6b6b6b 1px;
+    border-bottom: solid $eventlist_color 2px;
   }
 
   &-name{
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    background-color: $eventlist_color;
+    padding: 5px 3px;
+    color: #fff;
+  }
+
+  &-owner{
     font-size: 16px;
     font-weight: bold;
     line-height: 20px;
-    padding-bottom: 4px;
-    border-bottom: solid #6b6b6b 1px;
+    padding: 1px 3px;
+    background-color: lighten($eventlist_color, 40%);
+    color: $eventlist_color;
   }
 
   &-info {
-    overflow: hidden;
     font-size: 15px;
-    margin: 4px 0;
     clear: both;
   }
 
   &-text{
     font-size: 11px;
     line-height: 16px;
-    margin-top: 8px;
   }
 
   &-tag{

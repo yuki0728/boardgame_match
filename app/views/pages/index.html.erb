@@ -1,9 +1,0 @@
-<%= form_for (@events), url:posts_path do |event| %>
-  <% next unless event.exists? %>
-  <li>
-    <%= link_to events_show_path(event.id) do %>
-      <%= event.name %>
-      <%= event.text %>
-    <% end %>
-  </li>
-<% end %>
