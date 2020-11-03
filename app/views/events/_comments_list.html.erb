@@ -5,12 +5,20 @@
       <div class='comment-currentUser'>
         <%= link_to "削除", event_comment_path( id:comment.id, event_id: comment.event.id), method: :delete %>
         <p><%= comment.content %></p>
-        <%= comment.user.username %>
+        <%= link_to user_path( id:comment.user.id) do %>
+          <%= comment.user.username %>
+          <%= image_tag comment.user.img.thumb.url, class: "profile-icon-small" %>
+        <% end %>
       </div>
     <% else %>
       <div class='comment-otherUser'>
-        <%= comment.user.username %>
-        <p><%= comment.content %></a></p>
+          <%= link_to user_path( id:comment.user.id) do %>
+            <%= image_tag comment.user.img.thumb.url, class: "profile-icon-small" %>
+            <%= comment.user.username %>
+          <% end %>
+        <p>
+          <%= comment.content %>
+        </p>
       </div>
     <% end %>
   <% end %>

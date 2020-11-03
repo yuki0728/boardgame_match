@@ -32,7 +32,9 @@
         <%= link_to "イベント削除", event_path(@event) ,method: :delete %>
       <% end %>
     </div>
-    <%= render 'events/comment_new', event: @event, comment: @comment %>
-    <%= render 'events/comments_list', comments: @comments %>
+    <% if @event.participated_by?(current_user) %>
+      <%= render 'events/comment_new', event: @event, comment: @comment %>
+      <%= render 'events/comments_list', comments: @comments %>
+    <% end %>
   </div>
 </div>

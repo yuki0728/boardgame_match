@@ -1,43 +1,41 @@
-<div class="col-sm-6">
-  <div class="eventlist-box fly">
-    <%= link_to event_path(event) do %>
-      <div class="card-title">
-        <div class="eventlist-name">
-          <%= event.name %>
-        </div>
-        <div class="eventlist-owner">
-          <%= event.user.username %>
-        </div>
+<div class="eventlist-box fly">
+  <%= link_to event_path(event) do %>
+    <div class="card-title">
+      <div class="eventlist-name">
+        <%= event.name %>
       </div>
+      <div class="eventlist-owner">
+        <%= event.user.username %>
+      </div>
+    </div>
+    <% if event.img? %>
       <div class="eventlist-img">
-        <% if event.img? %>
-          <%= image_tag event.img.thumb.url, class: "bd-placeholder-img card-img-top img-fluid" %>
-        <% end %>
-      </div>
-      <div class="card-body">
-        <dl class="eventlist-info">
-          <dt style>
-            活動時間:
-            <%= render 'events/time', event: event %>
-          </dt>
-          <dt style>
-            参加人数:
-            <%= event.participations.count %>
-            /
-            <%= event.participant_limit %>
-          </dt>
-        </dl>
-        <div class="eventlist-text">
-          <%= event.text %>
-        </div>
+        <%= image_tag event.img.thumb.url, class: "bd-placeholder-img card-img-top img-fluid" %>
       </div>
     <% end %>
-    <div class="eventlist-tag">
-      <% event.tag_list.each do |tag| %>
-        <span class="badge badge-primary">
-          <%= link_to tag, events_path(tag_name: tag), class: "text-white" %>
-        </span>
-      <% end %>
+    <div class="card-body">
+      <dl class="eventlist-info">
+        <dt style>
+          活動時間:
+          <%= render 'events/time', event: event %>
+        </dt>
+        <dt style>
+          参加人数:
+          <%= event.participations.count %>
+          /
+          <%= event.participant_limit %>
+        </dt>
+      </dl>
+      <div class="eventlist-text">
+        <%= event.text %>
+      </div>
     </div>
+  <% end %>
+  <div class="eventlist-tag">
+    <% event.tag_list.each do |tag| %>
+      <span class="badge badge-primary">
+        <%= link_to tag, events_path(tag_name: tag), class: "text-white" %>
+      </span>
+    <% end %>
   </div>
 </div>

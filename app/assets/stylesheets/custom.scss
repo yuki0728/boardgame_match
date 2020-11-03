@@ -23,6 +23,14 @@ $eventlist_color: #2e2379;
   font-size: 15px;
 }
 
+@mixin profile_img($size) {
+  border-radius: 50%;
+  width: $size;
+  height: $size;
+  object-fit: cover;
+  border: 1px solid;
+}
+
 /* universal */
 
 body {
@@ -62,7 +70,6 @@ h1 {
     position: absolute;
     content: " ";
     display: block;
-    border-bottom: solid 3px #ƒ;
     bottom: -3px;
     width: 20%;
   }
@@ -221,6 +228,22 @@ input, textarea, select, .uneditable-input {
     text-align: center;
     letter-spacing: 0.05em;
     font-weight: bold;
+  }
+}
+
+.usershow{
+  img{
+    @include profile_img(100px)
+  }
+}
+
+.profile-icon{
+  &-small{
+    @include profile_img(40px)
+  }
+
+  &-large{
+    @include profile_img(100px)
   }
 }
 

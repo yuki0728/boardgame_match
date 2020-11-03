@@ -1,1 +1,44 @@
+<%= provide(:title, @user.username ) %>
+
 <h1><%= @user.username %>のユーザーページ</h1>
+<div class="row">
+  <div class="col-md-3 usershow">
+    <h2>
+      <% if @user.img? %>
+        <%= image_tag @user.img.thumb.url ,class:"profile-icon-large" %>
+      <% end %>
+      <%= @user.username%>
+    </h2>
+      好きなゲーム: 
+      <%= @user.favorite_game %>
+  </div>
+  <div class="col-md-9">
+    <div>
+      <%= @user.profile %>
+    </div>
+  </div>
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-9">
+    <% unless @user.events.blank? %>
+      <h2>主催中のイベント</h2>
+      <div class="row">
+        <% @user.events.each do |event| %>
+          <div class="col-sm-4">
+            <%= render 'events/feed', event: event %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <% unless @user.participate_events.where.not(user_id: @user.id).blank? %>
+      <h2>参加中のイベント</h2>
+      <div class="row">
+        <% @user.participate_events.where.not(user_id: @user.id).each do |event| %>
+          <div class="col-sm-4">
+            <%= render 'events/feed', event: event %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

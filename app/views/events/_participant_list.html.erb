@@ -7,9 +7,15 @@
       <%= link_to user_path(user.id) do %>
         <li>
           <% if user==event.user then %>
+            <% if user.img? %>
+              <%= image_tag user.img.thumb.url ,class:"profile-icon-small" %>
+            <% end %>
             <i class="fa 	fa-star fa-la "></i>
             <%= user.username %>
           <%else%>
+            <% if user.img? %>
+              <%= image_tag user.img.thumb.url ,class:"profile-icon-small" %>
+            <% end %>
             <%= user.username %>
           <% end %>
         </li>
