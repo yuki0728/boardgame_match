@@ -1,0 +1,7 @@
+<% visiter = notification.visiter %>
+<% event = notification.event %>
+
+<div class="clearfix">
+  <%= image_tag visiter.img.thumb.url ,class:"profile-icon-small" %>
+  <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
+</div>
