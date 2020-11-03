@@ -11,4 +11,14 @@ class Participation < ApplicationRecord
       errors.add(:participant_limit, "が参加人数より少ないです")
     end
   end
+
+  # 参加、不参加時にオーナーに通知する
+  def notify_owner_by(user, action)
+    notification = user.active_notifications.new(
+      event_id: event_id,
+      visited_id: event.user.id,
+      action: action
+    )
+    notification.save if notification.valid?
+  end
 end

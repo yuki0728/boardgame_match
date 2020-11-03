@@ -1,14 +1,27 @@
 # ログインユーザ
 User.create!(
-  id: "1",
-  username: "foobar",
-  email: "foobar@mail",
-  password: "foobar",
-  password_confirmation: "foobar",
-  profile: "こんにちはfoobarです！\r\n色々やってます！",
-  favorite_game: "ドミニオン",
-  img: open("#{Rails.root}/db/fixtures/user/sample0.jpg"),
-  confirmed_at: Time.current
+  [
+    {
+      username: "foobar",
+      email: "foobar@mail",
+      password: "foobar",
+      password_confirmation: "foobar",
+      profile: "こんにちはfoobarです！\r\n色々やってます！",
+      favorite_game: "ドミニオン",
+      img: open("#{Rails.root}/db/fixtures/user/sample0.jpg"),
+      confirmed_at: Time.current,
+    },
+    {
+      username: "other",
+      email: "other@mail",
+      password: "foobar",
+      password_confirmation: "foobar",
+      profile: "こんにちはotherです！\r\n色々やってます！",
+      favorite_game: "ドミニオン",
+      img: open("#{Rails.root}/db/fixtures/user/sample1.jpg"),
+      confirmed_at: Time.current,
+    },
+  ]
 )
 
 # その他ユーザ

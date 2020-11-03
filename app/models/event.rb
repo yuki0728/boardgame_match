@@ -12,6 +12,9 @@ class Event < ApplicationRecord
   # 画像アップロードの設定
   mount_uploader :img, ImgUploader
 
+  # 通知の設定
+  has_many :notifications, dependent: :destroy
+
   # タグの設定
   acts_as_taggable
 
@@ -25,6 +28,7 @@ class Event < ApplicationRecord
   validate :check_number_of_participant_limit
   validates :participant_limit, numericality: { only_integer: true, greater_than: 0 }
 
+  # イベント検索の設定
   scope :event_search, -> (search_params) do
     return if search_params.blank?
 
@@ -52,17 +56,20 @@ class Event < ApplicationRecord
     end
   }
 
+  # イベントのオーナーか？
   def owner?(user)
     user_id.equal? user.id
   end
 
+  # イベントの参加者か？
+  def participated_by?(user)
+    participations.where(user_id: user.id).exists?
+  end
+
+  # 参加人数が上限を超えていないかチェック
   def check_number_of_participant_limit
     if participant_limit && participant_limit < participations.count
       errors.add(:participant_limit, "が参加人数より少ないです")
     end
-  end
-
-  def participated_by?(user)
-    participations.where(user_id: user.id).exists?
   end
 end

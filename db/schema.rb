@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_31_100850) do
+ActiveRecord::Schema.define(version: 2020_11_03_090124) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
@@ -30,9 +30,18 @@ ActiveRecord::Schema.define(version: 2020_10_31_100850) do
     t.datetime "start_time"
     t.datetime "ending_time"
     t.integer "participant_id"
-    t.integer "participant_count"
     t.integer "participant_limit"
     t.string "img"
+  end
+
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "visiter_id"
+    t.integer "visited_id"
+    t.integer "event_id"
+    t.string "action"
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "participations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -91,7 +100,6 @@ ActiveRecord::Schema.define(version: 2020_10_31_100850) do
     t.datetime "updated_at", null: false
     t.string "username", null: false
     t.string "profile"
-    t.string "favorite"
     t.string "favorite_game"
     t.string "img"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -100,5 +108,4 @@ ActiveRecord::Schema.define(version: 2020_10_31_100850) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  add_foreign_key "taggings", "tags"
 end

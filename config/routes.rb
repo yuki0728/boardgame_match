@@ -6,6 +6,12 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
+  resources :notifications, only: :index do
+    collection do
+      delete :destroy_all
+    end
+  end
+
   devise_for :users
   # app/views/users/shared/_links.html.erb (リンク用パーシャル)
   # app/views/users/confirmations/new.html.erb (認証メールの再送信画面)
