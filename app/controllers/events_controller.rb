@@ -60,7 +60,6 @@ class EventsController < ApplicationController
     end
   end
 
-
   def search
     @event = Event.find(params[:id])
     @comments = @event.comments.order(created_at: "DESC")

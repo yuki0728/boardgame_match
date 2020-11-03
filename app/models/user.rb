@@ -7,6 +7,9 @@ class User < ApplicationRecord
 
   validates :username, presence: true
 
+  # 画像アップロードの設定
+  mount_uploader :img, ImgUploader
+
   # 主催イベント
   has_many :events
 

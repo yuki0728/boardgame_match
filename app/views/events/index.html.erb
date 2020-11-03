@@ -8,7 +8,9 @@
   <div class="col-md-9">
     <div class="row">
       <% @events.each do |event| %>
-        <%= render 'feed', event: event %>
+        <div class="col-sm-6">
+          <%= render 'feed', event: event %>
+        </div>
       <% end %>
     </div>
     <%= paginate @events %>

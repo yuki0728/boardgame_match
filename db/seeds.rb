@@ -5,20 +5,28 @@ User.create!(
   email: "foobar@mail",
   password: "foobar",
   password_confirmation: "foobar",
-  confirmed_at: Time.now
+  profile: "こんにちはfoobarです！\r\n色々やってます！",
+  favorite_game: "ドミニオン",
+  img: open("#{Rails.root}/db/fixtures/user/sample0.jpg"),
+  confirmed_at: Time.current
 )
 
 # その他ユーザ
 20.times do |n|
   user_name = Faker::Internet.user_name
+  profile = "こんにちは#{user_name}です！\r\nボードゲームを愛しています。\r\nよろしくね。"
   email = Faker::Internet.email
   password = "password"
+  image = open("#{Rails.root}/db/fixtures/user/sample#{n % 6}.jpg")
   User.create!(
     username: user_name,
     email: email,
     password: password,
     password_confirmation: password,
-    confirmed_at: Time.now
+    profile: profile,
+    favorite_game: "人生ゲーム",
+    img: image,
+    confirmed_at: Time.current
   )
 end
 

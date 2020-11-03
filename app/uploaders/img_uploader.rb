@@ -33,7 +33,7 @@ class ImgUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    if Rails.env.test? #テスト画像は一括削除できるようにフォルダを別にする
+    if Rails.env.test? # テスト画像は一括削除できるようにフォルダを別にする
       "uploads_#{Rails.env}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     else
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
