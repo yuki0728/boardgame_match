@@ -5,7 +5,7 @@
   <div class="sidebar-search">
     <%= form_with(scope: :event_search, url: events_path, method: :get, local: true) do |f| %>
 
-      <%= f.label :name, 'イベント検索' %>
+      <%= f.label '並び替え' %>
       <%= f.select :keyword, [ ['開始日時が早い順', 'new'],
                              ['開始日時が遅い順', 'old']
                       ] %><br>
@@ -23,6 +23,8 @@
           <div class="input-group-text"><i class="fa fa-calendar"></i></div><br>
         </div>
       </div>
+
+      <br>
 
       <%= f.submit('検索') %>
     <% end %>

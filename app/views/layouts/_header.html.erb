@@ -23,8 +23,18 @@
               <%= link_to 'ログアウト', destroy_user_session_path, class: "d-block d-lg-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to '通知', notifications_path, class: "d-none d-lg-block nav-link rounded-pill" %>
-              <%= link_to '通知', notifications_path, class: "d-block d-lg-none nav-link" %>
+              <%= link_to notifications_path, class: "d-none d-lg-block nav-link rounded-pill" do %>
+                通知
+                <%if notifications_unchecked? %>
+                  <i class="fa fa-circle" style="color: gold;"></i>
+                <% end %>
+              <% end %>
+              <%= link_to notifications_path, class: "d-block d-lg-none nav-link" do %>
+                通知
+                <%if notifications_unchecked? %>
+                  <i class="fa fa-circle" style="color: gold;"></i>
+                <% end %>
+              <% end %>
             </li>
             <li class='nav-item' >
               <%= link_to 'イベント作成', new_event_path, class: "d-block d-md-none nav-link" %>
@@ -43,7 +53,7 @@
             </li>
           <% end %>
         </ul>
-      </ul>
+      </div>
     </div>
   </nav>
   <nav class='navbar bg-secondary d-none d-md-block'>
