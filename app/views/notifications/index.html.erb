@@ -1,7 +1,10 @@
 <%= provide(:title, '通知') %>
 
 <h1>通知</h1>
-<%=link_to "全削除", destroy_all_notifications_path, method: :delete, class: "btn btn-danger rounded-pill" %>
+<%=link_to destroy_all_notifications_path, method: :delete, class: "btn btn-danger rounded-pill" do %>
+  <i class="fa fa-trash" aria-hidden="true"></i>
+  全削除
+<% end %>
 <hr>
 <% if @notifications.exists? %>
   <div class="users-index">
