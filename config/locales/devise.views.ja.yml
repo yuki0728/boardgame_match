@@ -34,7 +34,7 @@ ja:
         remember_me: "次回から自動的にログイン"
     models:
       user: "ユーザ"
-  devise:
+  users:
     confirmations:
       new:
         resend_confirmation_instructions: "アカウント確認メール再送"
@@ -70,7 +70,7 @@ ja:
         currently_waiting_confirmation_for_email: "%{email} の確認待ち"
         leave_blank_if_you_don_t_want_to_change_it: "空欄のままなら変更しません"
         title: "%{resource}編集"
-        unhappy: "気に入りません"
+        unhappy: "推奨しません"
         update: "更新"
         we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
       new:
