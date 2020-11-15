@@ -18,6 +18,10 @@ class Event < ApplicationRecord
   # タグの設定
   acts_as_taggable
 
+  # 経緯度及び住所の設定
+  geocoded_by :address
+  after_validation :geocode
+
   # イベント名、本文のValitation
   validates :name, length: { maximum: 100 }, presence: true
   validates :text, length: { maximum: 3000 }, presence: true

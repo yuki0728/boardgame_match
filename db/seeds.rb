@@ -39,7 +39,7 @@ User.create!(
     profile: profile,
     favorite_game: "人生ゲーム",
     img: image,
-    confirmed_at: Time.current
+    confirmed_at: Time.current,
   )
 end
 
@@ -57,6 +57,7 @@ Event.create!(
       tag_list: "ドミニオン,名古屋",
       user_id: "1",
       img: open("#{Rails.root}/db/fixtures/sample1.jpg"),
+      address: '名古屋駅',
     },
     {
       name: "ゲーマー",
@@ -67,6 +68,7 @@ Event.create!(
       tag_list: "宝石の輝き,東京",
       user_id: "2",
       img: open("#{Rails.root}/db/fixtures/sample10.jpg"),
+      address: '秋葉原',
     },
     {
       name: "犯人は踊るオフ会(他ゲームもやるかも)",
@@ -77,6 +79,7 @@ Event.create!(
       tag_list: "犯人は踊る,千代田区",
       user_id: "3",
       img: open("#{Rails.root}/db/fixtures/sample9.jpg"),
+      address: '東京大学',
     },
   ]
 )
@@ -87,8 +90,8 @@ name = ['カルカソンヌ', 'ドミニオン', 'ゴキブリポーカー',
 
 comment = ['はじめまして', '誰かいますか？', 'おーい']
 
-50.times do |n|
-  state = Faker::Address.state
+20.times do |n|
+  address = Faker::Address.city
   participant_limit = rand(2..10)
   user_id = rand(7..User.count)
   event_id = Event.count + 1
@@ -96,14 +99,15 @@ comment = ['はじめまして', '誰かいますか？', 'おーい']
   image = open("#{Rails.root}/db/fixtures/sample#{n % 11}.jpg")
   Event.create!(
     name: "#{name[n % 11]}やろう!",
-    text: "#{state}の#{name[n % 11]}好き集まれ!",
+    text: "#{address}の#{name[n % 11]}好き集まれ!",
     start_time: start_time,
     ending_time: start_time.since(3.hours),
     participant_limit: participant_limit,
-    tag_list: "#{name[n % 11]},#{state}",
+    tag_list: "#{name[n % 11]},#{address}",
     user_id: user_id,
     created_at: DateTime.current.since(n.seconds),
     img: image,
+    address: address
   )
 
   3.times do |m|

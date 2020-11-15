@@ -10,6 +10,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.create(events_params)
     @event.user_id = current_user.id
+    @event.address = @event.prefecture + @event.address_city
+    @event.address = @event.address.gsub(/\d+/, "").gsub(/\-+/, "")
     if @event.save
       redirect_to @event, success: "イベントを作成しました"
     else
@@ -34,6 +36,13 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @comments = @event.comments.order(created_at: "DESC").page(params[:page]).per(MAX_DISPLAY_COMMENTS)
     @comment = Comment.new
+
+    # Google mapで開催場所を表示する。
+    @hash = Gmaps4rails.build_markers(@event) do |event, marker|
+      marker.lat event.latitude
+      marker.lng event.longitude
+      marker.infowindow event.address
+    end
   end
 
   def edit
@@ -58,12 +67,6 @@ class EventsController < ApplicationController
       flash.now[:danger] = 'イベントの削除に失敗しました'
       render :show
     end
-  end
-
-  def search
-    @event = Event.find(params[:id])
-    @comments = @event.comments.order(created_at: "DESC")
-    @comment = Comment.new
   end
 
   private
