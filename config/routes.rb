@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'events#index'
+  get '/map_request', to: 'maps#map', as: 'map_request'
 
   resources :events do
     resources :participations, only: [:create, :destroy]
@@ -11,6 +12,8 @@ Rails.application.routes.draw do
       delete :destroy_all
     end
   end
+
+  resources :maps, only: [:index]
 
   devise_for :users
   # app/views/users/shared/_links.html.erb (リンク用パーシャル)

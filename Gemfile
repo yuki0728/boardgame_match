@@ -62,6 +62,10 @@ gem 'kaminari-bootstrap'
 gem 'momentjs-rails'
 gem 'bootstrap4-datetime-picker-rails'
 
+# Google map
+gem 'geocoder'
+gem 'gmaps4rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i(mri mingw x64_mingw)
