@@ -10,8 +10,6 @@ class EventsController < ApplicationController
   def create
     @event = Event.create(events_params)
     @event.user_id = current_user.id
-    @event.address = @event.prefecture + @event.address_city
-    @event.address = @event.address.gsub(/\d+/, "").gsub(/\-+/, "")
     if @event.save
       redirect_to @event, success: "イベントを作成しました"
     else
@@ -72,7 +70,8 @@ class EventsController < ApplicationController
   private
 
   def events_params
-    params.require(:event).permit(:name, :text, :start_time, :ending_time, :participant_limit,
+    params.require(:event).permit(:name, :text, :start_time, :ending_time,
+                                  :participant_limit, :address,
                                   :tag_list, :img)
   end
 

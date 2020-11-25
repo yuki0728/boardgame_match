@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 
   resources :maps, only: [:index]
 
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+  }
   # app/views/users/shared/_links.html.erb (リンク用パーシャル)
   # app/views/users/confirmations/new.html.erb (認証メールの再送信画面)
   # app/views/users/passwords/edit.html.erb (パスワード変更画面)

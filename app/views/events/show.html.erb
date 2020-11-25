@@ -27,9 +27,9 @@
       <div class="eventshow-text">
         <%= @event.text %>
       </div>
-
-      <%= render 'layouts/map', hash: @hash %>
-
+      <div>
+        <%= render 'layouts/map', hash: @hash %>
+      </div>
       <% if @event.owner?(current_user) %>
         <%= link_to "イベント編集", edit_event_path(@event) %>
         <%= link_to "イベント削除", event_path(@event) ,method: :delete %>

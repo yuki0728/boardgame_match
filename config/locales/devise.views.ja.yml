@@ -10,6 +10,13 @@ ja:
               too_short: "は%{count}文字以上に設定して下さい。"
               too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
+            address:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
+              confirmation: "が内容とあっていません。"
             email:
               taken: "は既に使用されています。"
               blank: "が入力されていません。"
@@ -27,6 +34,8 @@ ja:
       user:
         current_password: "現在のパスワード"
         name: 名前
+        img: プロフィール画像
+        address: 住所
         username: ユーザー名
         email: "メールアドレス"
         password: "パスワード"
