@@ -20,7 +20,7 @@ class Event < ApplicationRecord
 
   # 経緯度及び住所の設定
   geocoded_by :address
-  after_validation :geocode
+  after_validation :geocode, if: :address_changed?
 
   # イベント名、本文のValitation
   validates :name, length: { maximum: 100 }, presence: true
@@ -31,6 +31,8 @@ class Event < ApplicationRecord
   # 参加人数のValitation
   validate :check_number_of_participant_limit
   validates :participant_limit, numericality: { only_integer: true, greater_than: 0 }
+  # 住所と緯度経度のValitation
+  validate :check_the_address_exists
 
   # イベント検索の設定
   scope :event_search, -> (search_params) do
@@ -68,6 +70,13 @@ class Event < ApplicationRecord
   # イベントの参加者か？
   def participated_by?(user)
     participations.where(user_id: user.id).exists?
+  end
+
+  # 存在する住所かチェック
+  def check_the_address_exists
+    if address.present? && longitude.nil? && latitude.nil?
+      errors.add(:address, "が存在していません")
+    end
   end
 
   # 参加人数が上限を超えていないかチェック
