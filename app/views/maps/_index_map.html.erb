@@ -1,0 +1,57 @@
+<script>
+  var events = <%= @events %>;
+  var map;
+  var marker = [];
+  var infoWindow = [];
+
+  function initMap(){
+    map = new google.maps.Map(document.getElementById('map_index'), {
+    center: {lat: 37.67229496806523, lng: 137.88838989062504}, // 地図の中心を指定
+    zoom: 6, // 地図のズームを指定
+    mapTypeControl: false,
+    streetViewControl: false
+    });
+    for (let i = 0; i < events.length; i++) {
+      marker[i] = new google.maps.Marker({
+        position: {lat: parseFloat(events[i].latitude), lng: parseFloat(events[i].longitude)},
+        map: map,
+        animation: google.maps.Animation.DROP
+      });
+      infoWindow[i] = new google.maps.InfoWindow({
+        content: events[i].name + "<br>"
+                + "<a href='/events/" + events[i].id + "' style='color: #00f;'>このイベントの詳細</a>" + "<br>"
+                + "<img src=" + events[i].img.url +" width=100>"
+      });
+      markerEvent(i);
+    }
+  };
+
+  function markerEvent(i) {
+    // マーカークリック時の動作
+    marker[i].addListener('click', function() {
+      infoWindow[i].open(map, marker[i]);
+    });
+  }
+
+  function getLocation(){
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var latlng = new google.maps.LatLng(latitude, longitude);
+        map.setCenter(latlng);
+        map.setZoom(12);
+      }
+    );
+  }
+
+  function deleteMakers() { // 既存のマーカーを削除
+    for (let i = 0; i < events.length; i++) {
+      if(marker[i] != null) {
+        marker[i].setMap(null);
+      }
+    }
+  }
+
+  initMap();
+</script>

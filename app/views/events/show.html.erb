@@ -28,7 +28,7 @@
         <%= @event.text %>
       </div>
       <div>
-        <%= render 'layouts/map', hash: @hash %>
+        <%= render 'maps/map', hash: @hash %>
       </div>
       <% if @event.owner?(current_user) %>
         <%= link_to "イベント編集", edit_event_path(@event) %>
