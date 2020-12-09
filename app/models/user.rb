@@ -34,6 +34,14 @@ class User < ApplicationRecord
   validates :username, presence: true
   validate :check_the_address_exists
 
+  # ゲストユーザでログインする
+  def self.guest
+    find_or_create_by!(username: 'ゲスト', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+    end
+  end
+
   # 存在する住所かチェック
   def check_the_address_exists
     if address.present? && longitude.nil? && latitude.nil?
