@@ -4,6 +4,14 @@
 
 /* mixins, variables, etc. */
 
+$overall_backgorund_color: #fcfcf1;
+$header_color: #4b4238;
+$menu_color: #ceca93;
+$sidebar_color: #d0cfb7;
+$center_color: #ffffff;
+$footer_color: #ceca93;
+$accent_color: #606060;
+
 $gray: #6b6b6b;
 $eventlist_color: #2e2379;
 
@@ -34,7 +42,8 @@ $eventlist_color: #2e2379;
 /* universal */
 
 body {
-  padding-top: 0px;
+  background-color: $overall_backgorund_color;
+  padding-top: 50px;
 }
 
 section {
@@ -46,15 +55,7 @@ textarea {
 }
 
 .container {
-  width: 90%;
-}
-
-.center {
-  text-align: center;
-}
-
-.center h1 {
-  margin-bottom: 10px;
+  width: 95%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -62,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  border-bottom: solid 3px #cce4ff;
+  border-bottom: solid 3px $accent_color;
   position: relative;
   margin-bottom: 20px;
 
@@ -123,7 +124,26 @@ input, textarea, select, .uneditable-input {
   }
 }
 
+.multiline-text {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  position: relative;
+  background-color: #C0C0C0;
+  &:after{
+    content: "...";
+    position: absolute;
+    top: 73px;
+    left: 80px;
+    background-color: #C0C0C0;
+  }
+}
+
 /* header */
+
+.header {
+  background-color: $header_color;
+}
 
 #logo {
   float: left;
@@ -182,21 +202,29 @@ input, textarea, select, .uneditable-input {
   }
 }
 
+.menubar {
+  background-color: $menu_color;
+}
+
 /* footer */
 
 /* main */
 
 .main{
-  background-color: #ffffff;
-  padding-top: 20px;
+  margin-top: 20px;
 }
 
-/* user */
+.center{
+  background-color: $center_color;
+  border-radius: 5px;
+  padding-top: 20px;
+  box-shadow: 0 0 3px 0 rgba(0,0,0,.12), 0 2px 3px 0 rgba(0,0,0,.22);
+}
 
 .sidebar{
   &-box{
     margin-bottom: 20px;
-    background: #ffffff;
+    background-color: $sidebar_color;
     border: solid 1px;
     padding: 0px;
     li {
@@ -208,7 +236,7 @@ input, textarea, select, .uneditable-input {
 
   &-title{
     font-size: 1em;
-    background: #12126f;
+    background: $accent_color;
     padding: 4px;
     text-align: center;
     color: #FFF;
@@ -220,6 +248,8 @@ input, textarea, select, .uneditable-input {
     padding: 5px;
   }
 }
+
+/* user */
 
 .participant{
   &-count{
@@ -253,27 +283,36 @@ input, textarea, select, .uneditable-input {
     font-size: 16px;
     white-space: nowrap;
     overflow: hidden;
-
     color: #1e366a;
-    border: solid $eventlist_color 2px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: block;
-    overflow: hidden;
     border-radius: 3px;
   }
 
   &-img{
-    display: block;
-    border-bottom: solid $eventlist_color 2px;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    border-radius: 6px;
+    line-height: 200px;
+    position: relative;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 6px;
+      vertical-align: top;
+    }
   }
 
   &-name{
     font-size: 20px;
     font-weight: bold;
-    line-height: 20px;
-    background-color: $eventlist_color;
     padding: 5px 3px;
-    color: #fff;
+    p {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
 
   &-owner{
@@ -281,13 +320,20 @@ input, textarea, select, .uneditable-input {
     font-weight: bold;
     line-height: 20px;
     padding: 1px 3px;
-    background-color: lighten($eventlist_color, 40%);
     color: $eventlist_color;
   }
 
   &-info {
-    font-size: 15px;
+    font-size: 16px;
     clear: both;
+    padding: 0 10px 0px 10px;
+
+    dt{
+      float: left;
+    }
+    dd{
+      margin-left: 1em ;
+    }
   }
 
   &-text{

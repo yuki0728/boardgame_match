@@ -9,6 +9,10 @@ class ImgUploader < CarrierWave::Uploader::Base
     storage :file
   end
 
+  def default_url(*args)
+    ActionController::Base.helpers.asset_path("fallback/" + [version_name, "no_image.png"].compact.join('_'))
+  end
+
   # 画像の上限を700pxにする
   process :resize_to_limit => [700, 700]
 

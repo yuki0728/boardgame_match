@@ -4,7 +4,7 @@
 SITE_TITLE = 'Gamatch'.freeze
 
 # イベントの最大表示数
-MAX_DISPLAY_EVENTS = 10
+MAX_DISPLAY_EVENTS = 12
 
 # コメントの最大表示数
 MAX_DISPLAY_COMMENTS = 30

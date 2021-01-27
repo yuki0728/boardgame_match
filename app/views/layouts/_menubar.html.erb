@@ -1,0 +1,15 @@
+<nav class='navbar menubar d-none d-md-block'>
+  <div class='container'>
+    <div class="navbar-brand">
+      <ol class="breadcrumb">
+        <li><%= link_to "Home", root_path %></li>
+        <% if request.fullpath != root_path %>
+          <li><%= title %></li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="navbar-brand">
+      <%= link_to 'イベント作成', new_event_path, class:"btn btn-light" %>
+    </div>
+  </div>
+</nav>

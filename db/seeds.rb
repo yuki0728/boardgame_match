@@ -57,7 +57,8 @@ Event.create!(
       tag_list: "ドミニオン,名古屋",
       user_id: "1",
       img: open("#{Rails.root}/db/fixtures/sample1.jpg"),
-      address: '名古屋駅',
+      place: 'ボードゲームバー ロードオブアギト',
+      address: '愛知県 名古屋市 名古屋駅',
     },
     {
       name: "ゲーマー",
@@ -68,7 +69,8 @@ Event.create!(
       tag_list: "宝石の輝き,東京",
       user_id: "2",
       img: open("#{Rails.root}/db/fixtures/sample10.jpg"),
-      address: '秋葉原',
+      place: 'ボードゲームバー(未定)',
+      address: '東京都 千代田区 秋葉原',
     },
     {
       name: "犯人は踊るオフ会(他ゲームもやるかも)",
@@ -79,19 +81,49 @@ Event.create!(
       tag_list: "犯人は踊る,千代田区",
       user_id: "3",
       img: open("#{Rails.root}/db/fixtures/sample9.jpg"),
-      address: '東京大学',
+      place: '東京大学',
+      address: '東京都 文京区',
     },
   ]
 )
 
-name = ['カルカソンヌ', 'ドミニオン', 'ゴキブリポーカー',
-        'ニムト', 'バトルライン', 'パンデミック', 'ブロックス', 'ラブレター',
-        'ワンナイト人狼', '犯人は踊る', '宝石の輝き']
+name = [
+  'カルカソンヌ', 'ドミニオン', 'ゴキブリポーカー',
+  'ニムト', 'バトルライン', 'パンデミック', 'ブロックス', 'ラブレター',
+  'ワンナイト人狼', '犯人は踊る', '宝石の輝き',
+]
 
 comment = ['はじめまして', '誰かいますか？', 'おーい']
 
+address = [
+  '愛知県名古屋市中区大須３丁目３８−１３ 喜久屋大須ビル',
+  '愛知県名古屋市中区大須３丁目１８−８ 赤門ビル2階',
+  '東京都千代田区岩本町１丁目４−５',
+  '東京都千代田区外神田３丁目８−５',
+  '大阪府大阪市北区堂山町５−１４',
+  '大阪府大阪市阿倍野区阪南町１丁目５３−２０',
+  '福岡県福岡市博多区祇園町４−６ 平田ビル 401号',
+  '北海道札幌市中央区南１条東２丁目1ｰ3 和興ビル',
+  '東京都新宿区西新宿7-19-6',
+  '東京都墨田区京島1-27-16',
+  '愛知県名古屋市中村区名駅2-42-10',
+]
+
+place = [
+  '大須ボードゲームカフェ ボードボード',
+  'JELLY JELLY CAFE',
+  '東京ボードゲームバー',
+  'ゲームカフェ秋葉原集会所',
+  'ボードゲームカフェ ピエット',
+  'ボードゲームカフェ-デザート',
+  'ボードゲームカフェ福岡博多フレンズフレンズ',
+  'ボードゲームプレイスペース フレンズ',
+  'レンタルスペース',
+  'レンタルスペース',
+  'レンタルスペース',
+]
+
 20.times do |n|
-  address = Faker::Address.city
   participant_limit = rand(2..10)
   user_id = rand(7..User.count)
   event_id = Event.count + 1
@@ -99,15 +131,16 @@ comment = ['はじめまして', '誰かいますか？', 'おーい']
   image = open("#{Rails.root}/db/fixtures/sample#{n % 11}.jpg")
   Event.create!(
     name: "#{name[n % 11]}やろう!",
-    text: "#{address}の#{name[n % 11]}好き集まれ!",
+    text: "#{address[n % 11]}の#{name[n % 11]}好き集まれ!",
     start_time: start_time,
     ending_time: start_time.since(3.hours),
     participant_limit: participant_limit,
-    tag_list: "#{name[n % 11]},#{address}",
+    tag_list: "#{name[n % 11]},#{address[n % 11]}",
     user_id: user_id,
     created_at: DateTime.current.since(n.seconds),
     img: image,
-    address: address
+    place: place[n%11],
+    address: address[n % 11]
   )
 
   3.times do |m|

@@ -18,8 +18,9 @@
 
   </head>
 
+  <%= render 'layouts/header' %>
   <body>
-    <%= render 'layouts/header', title: yield(:title) %>
+    <%= render 'layouts/menubar', title: yield(:title)  %>
     <%= render 'layouts/flashes' %>
     <div class="container main">
       <%= yield %>
