@@ -24,7 +24,7 @@ class EventsController < ApplicationController
       @events = Event.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
     elsif @search_params == {}
       # 検索していない場合でもイベント一覧は表示する。
-      @events = Event.page(params[:page]).per(10)
+      @events = Event.page(params[:page]).per(MAX_DISPLAY_EVENTS)
     else
       @events = Event.event_search(@search_params).page(params[:page]).per(MAX_DISPLAY_EVENTS)
     end

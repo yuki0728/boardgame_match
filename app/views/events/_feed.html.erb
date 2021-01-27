@@ -1,42 +1,41 @@
 <div class="eventlist-box fly">
   <%= link_to event_path(event) do %>
-    <div class="card-title">
-      <div class="eventlist-name">
-        <%= event.name %>
-      </div>
-      <div class="eventlist-owner">
-        <%= event.user.username %>
-      </div>
+    <div class="eventlist-name">
+      <p><%= event.name %></p>
+    </div>
+    <div class="eventlist-tag">
+      <object>
+        <% event.tag_list.each do |tag| %>
+          <span class="badge badge-primary">
+            <%= link_to tag, events_path(tag_name: tag), class: "text-white" %>
+          </span>
+        <% end %>
+      </object>
     </div>
     <% if event.img? %>
       <div class="eventlist-img">
-        <%= image_tag event.img.thumb.url, class: "bd-placeholder-img card-img-top img-fluid" %>
+        <%= image_tag event.img.thumb.url %>
       </div>
     <% end %>
-    <div class="card-body">
-      <dl class="eventlist-info">
-        <dt style>
-          活動時間:
-          <%= render 'events/time', event: event %>
-        </dt>
-        <dt style>
-          参加人数:
-          <%= event.participations.count %>
-          /
-          <%= event.participant_limit %>
-        </dt>
-      </dl>
-        <%= event.address %>
-      <div class="eventlist-text">
-        <%= event.text %>
-      </div>
-    </div>
+    <dl class="eventlist-info">
+      <dt><i class="fa fa-clock-o"></i></dt>
+      <dd>
+        <%= render 'events/time', event: event %>
+      </dd>
+      <dt><i class="fa fa-users"></i></dt>
+      <dd>
+        <% if event.participations.count == event.participant_limit %>
+          参加不可
+        <% else %>
+          参加可
+        <% end %>
+      </dd>
+      <% if event.address? %>
+        <dt><i class="fa fa-map-marker"></i></dt>
+        <dd>
+          <%= event.address %>
+        </dd>
+      <% end %>
+    </dl>
   <% end %>
-  <div class="eventlist-tag">
-    <% event.tag_list.each do |tag| %>
-      <span class="badge badge-primary">
-        <%= link_to tag, events_path(tag_name: tag), class: "text-white" %>
-      </span>
-    <% end %>
-  </div>
 </div>
