@@ -51,13 +51,14 @@ class Event < ApplicationRecord
     end
   }
 
-  scope :sorting, -> (selection) {
-    case selection
-    when 'new'
-      order(start_time: :ASC)
-    when 'old'
-      order(start_time: :DESC)
-    end
+  scope :sorting, -> (sort) { order(sort) }
+  scope :sort_list, -> {
+    {
+      "開始日時が早い順" => "start_time ASC",
+      "開始日時が遅い順" => "start_time DESC",
+      "作成が古い順" => "updated_at ASC",
+      "作成が新しい順" => "updated_at DESC",
+    }
   }
 
   # イベントのオーナーか？
