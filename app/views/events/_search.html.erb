@@ -5,15 +5,15 @@
   <div class="sidebar-search">
     <%= form_with(scope: :event_search, url: events_path, method: :get, local: true) do |f| %>
 
-      <%= f.label :name, 'イベント検索' %>
-      <%= f.text_field :name , class: 'search_container' %><br>
+      <%= f.label :name, 'イベント名' %>
+      <%= f.text_field :name ,value:@search_params[:name] ,class: 'search_container' %><br>
 
       <%= f.label :tag_list, 'タグ' %>
-      <%= f.text_field :tag_list %><br>
+      <%= f.text_field :tag_list ,value:@search_params[:tag_list] %><br>
 
       <%= f.label :date, '日にち' %>
       <div class="input-group" data-target-input="nearest">
-        <%= f.text_field :date, id: "date", class: "form-control datepicker", data: { target: '#date'} %>
+        <%= f.text_field :date,value:@search_params[:date] , id: "date", class: "form-control datepicker", data: { target: '#date'} %>
         <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div><br>
         </div>
