@@ -1,6 +1,7 @@
 class MapsController < ApplicationController
   def index
     @events = Event.all.to_json.html_safe
+    @search_params = event_search_params
   end
 
   def map
