@@ -19,6 +19,6 @@
     <%= paginate @events %>
   </div>
   <div class="col-md-3">
-    <%= render 'search' %>
+    <%= render 'shared/search', url: events_path, send_locally: true, search_params: @search_params %>
   </div>
 </div>

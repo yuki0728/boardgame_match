@@ -1,0 +1,36 @@
+<div class="sidebar-box">
+  <div class="sidebar-title">
+    イベント検索
+  </div>
+  <div class="sidebar-search">
+    <%= form_with(scope: :event_search, url: url, method: :get, local: send_locally) do |f| %>
+
+      <%= f.label :name, 'イベント名' %>
+      <%= f.text_field :name ,value:search_params[:name] ,class: 'search_container' %><br>
+
+      <%= f.label :tag_list, 'タグ' %>
+      <%= f.text_field :tag_list ,value:search_params[:tag_list] %><br>
+
+      <%= f.label :date, '日にち' %>
+      <div class="input-group" data-target-input="nearest">
+        <%= f.text_field :date,value:search_params[:date] , id: "date", class: "form-control datepicker", data: { target: '#date'} %>
+        <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i></div><br>
+        </div>
+      </div>
+
+      <br>
+
+      <% unless request.path.include?("maps") %>
+        <%= f.submit 'イベントを検索', class: "btn btn-primary" %>
+      <% else %>
+        <% #既存のマーカーを削除してから指定の投稿を表示 %>
+        <%= f.submit 'イベントを検索', class: "btn btn-primary", onclick: "deleteMakers()" %>
+
+        <button type="button" class="btn btn-success w-100" onclick="getLocation()">
+          現在地周辺を表示
+        </button>
+      <% end %>
+    <% end %>
+  </div>
+</div>
