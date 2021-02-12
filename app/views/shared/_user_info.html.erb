@@ -1,0 +1,13 @@
+<% if user_signed_in? then %>
+  <div class="sidebar-box d-none d-md-block">
+    <div class='user_info'>
+      <%= link_to user_path( id:current_user.id) do %>
+        <div>
+          <%= image_tag current_user.img.thumb.url, class: "profile-icon-large" %>
+        </div>
+        <p><%= current_user.username %></p>
+      <% end %>
+      <%= link_to 'イベント作成', new_event_path, class:"btn btn-light" %>
+    </div>
+  </div>
+<% end %>

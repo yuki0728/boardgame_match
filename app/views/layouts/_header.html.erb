@@ -1,5 +1,5 @@
 <header>
-  <nav class='navbar navbar-expand-lg navbar-dark fixed-top header'>
+  <nav class='navbar navbar-expand-md navbar-dark fixed-top header'>
     <div class='container'>
       <%= link_to SITE_TITLE, root_path, class: 'navbar-brand'%>
       <button type='button' class='navbar-toggler' 
@@ -11,33 +11,31 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li class='nav-item' >
-              <%= link_to "マイページ", user_path(current_user.id), class: "d-none d-lg-block nav-link rounded-pill" %>
-              <%= link_to "マイページ", user_path(current_user.id), class: "d-block d-lg-none nav-link" %>
+              <%= link_to "マイページ", user_path(current_user.id), class: "d-none d-md-block nav-link rounded-pill" %>
+              <%= link_to "マイページ", user_path(current_user.id), class: "d-block d-md-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to '地図から検索', maps_path, class: "d-none d-lg-block nav-link rounded-pill" %>
-              <%= link_to '地図から検索', maps_path, class: "d-block d-lg-none nav-link" %>
+              <%= link_to '地図から検索', maps_path, class: "d-block d-md-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to 'リストから検索', events_path, class: "d-none d-lg-block nav-link rounded-pill" %>
-              <%= link_to 'リストから検索', events_path, class: "d-block d-lg-none nav-link" %>
+              <%= link_to 'リストから検索', events_path, class: "d-block d-md-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "d-none d-lg-block nav-link rounded-pill" %>
-              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "d-block d-lg-none nav-link" %>
+              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "d-none d-md-block nav-link rounded-pill" %>
+              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "d-block d-md-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to 'ログアウト', destroy_user_session_path, class: "d-none d-lg-block nav-link rounded-pill" %>
-              <%= link_to 'ログアウト', destroy_user_session_path, class: "d-block d-lg-none nav-link" %>
+              <%= link_to 'ログアウト', destroy_user_session_path, class: "d-none d-md-block nav-link rounded-pill" %>
+              <%= link_to 'ログアウト', destroy_user_session_path, class: "d-block d-md-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to notifications_path, class: "d-none d-lg-block nav-link rounded-pill" do %>
+              <%= link_to notifications_path, class: "d-none d-md-block nav-link rounded-pill" do %>
                 通知
                 <%if notifications_unchecked? %>
                   <i class="fa fa-circle" style="color: gold;"></i>
                 <% end %>
               <% end %>
-              <%= link_to notifications_path, class: "d-block d-lg-none nav-link" do %>
+              <%= link_to notifications_path, class: "d-block d-md-none nav-link" do %>
                 通知
                 <%if notifications_unchecked? %>
                   <i class="fa fa-circle" style="color: gold;"></i>
@@ -49,19 +47,16 @@
             </li>
           <% else %>
             <li class='nav-item' >
-              <%= link_to 'サインアップ', new_user_registration_path, class: "d-none d-lg-block nav-link rounded-pill" %>
-              <%= link_to 'サインアップ', new_user_registration_path, class: "d-block d-lg-none nav-link" %>
+              <%= link_to 'サインアップ', new_user_registration_path, class: "d-none d-md-block nav-link rounded-pill" %>
+              <%= link_to 'サインアップ', new_user_registration_path, class: "d-block d-md-none nav-link" %>
             </li>
             <li>
-              <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "d-none d-lg-block nav-link rounded-pill" %>
-              <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "d-block d-lg-none nav-link" %>
+              <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "d-none d-md-block nav-link rounded-pill" %>
+              <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "d-block d-md-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to 'ログイン', new_user_session_path, class: "d-none d-lg-block nav-link rounded-pill" %>
-              <%= link_to 'ログイン', new_user_session_path, class: "d-block d-lg-none nav-link" %>
-            </li>
-            <li class='nav-item' >
-              <%= link_to 'イベント作成', new_event_path, class: "d-block d-md-none nav-link" %>
+              <%= link_to 'ログイン', new_user_session_path, class: "d-none d-md-block nav-link rounded-pill" %>
+              <%= link_to 'ログイン', new_user_session_path, class: "d-block d-md-none nav-link" %>
             </li>
           <% end %>
         </ul>

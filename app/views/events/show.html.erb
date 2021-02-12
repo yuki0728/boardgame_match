@@ -6,12 +6,9 @@
     <%= render 'events/participantion_button', event: @event %>
     <%= render 'events/participant_list', event: @event %>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-9 center">
     <div class="eventshow-box">
-      <div class="eventshow-time">
-        活動時間:
-        <%= render 'events/time', event: @event %>
-      </div>
+      <h2>イベント内容</h2>
       <div class="eventshow-tag">
         <% @event.tag_list.each do |tag| %>
           <span class="badge badge-primary">
@@ -21,23 +18,44 @@
       </div>
       <div class="eventshow-img">
         <% if @event.img? %>
-          <%= image_tag @event.img.url ,class:"img-fluid " %>
+          <%= image_tag @event.img.url %>
         <% end %>
       </div>
-      <div class="eventshow-text">
-        <%= @event.text %>
-      </div>
-      <div>
-        <%= render 'maps/map', hash: @hash %>
-      </div>
+      <table>
+        <tr>
+          <th>概要</th>
+          <td><%= @event.text %></td>
+        </tr>
+        <tr>
+          <th>活動時間</th>
+          <td><%= render 'events/time', event: @event %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= @event.address %></td>
+        </tr>
+        <tr>
+          <th>地図</th>
+          <td><%= render 'maps/map', hash: @hash %></td>
+        </tr>
+      </table>
       <% if @event.owner?(current_user) %>
         <%= link_to "イベント編集", edit_event_path(@event) %>
         <%= link_to "イベント削除", event_path(@event) ,method: :delete %>
       <% end %>
     </div>
+
+    <div class="separator"></div>
+
     <% if @event.participated_by?(current_user) %>
-      <%= render 'events/comment_new', event: @event, comment: @comment %>
-      <%= render 'events/comments_list', comments: @comments %>
+      <h2>チャット</h2>
+      <div class="row">
+        <div class="col-md-8">
+          <%= render 'events/comments_list', comments: @comments %>
+        </div>
+        <div class="col-md-4">
+          <%= render 'events/comment_new', event: @event, comment: @comment %>
+        </div>
     <% end %>
   </div>
 </div>
