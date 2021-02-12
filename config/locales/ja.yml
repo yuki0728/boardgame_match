@@ -16,6 +16,7 @@ ja:
         participant_limit: 参加上限
         tag_list: タグ
         img: 画像
+        address: 住所
   date:
     abbr_day_names:
     - 日

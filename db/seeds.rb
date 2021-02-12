@@ -2,13 +2,23 @@
 User.create!(
   [
     {
+      username: 'ゲスト',
+      email: 'guest@example.com',
+      password: "foobar",
+      password_confirmation: "foobar",
+      profile: "ゲストユーザーです！",
+      favorite_game: "カタン",
+      img: open("#{Rails.root}/db/fixtures/user/sample0.jpg"),
+      confirmed_at: Time.current,
+    },
+    {
       username: "foobar",
       email: "foobar@mail",
       password: "foobar",
       password_confirmation: "foobar",
       profile: "こんにちはfoobarです！\r\n色々やってます！",
       favorite_game: "ドミニオン",
-      img: open("#{Rails.root}/db/fixtures/user/sample0.jpg"),
+      img: open("#{Rails.root}/db/fixtures/user/sample1.jpg"),
       confirmed_at: Time.current,
     },
     {
@@ -18,7 +28,7 @@ User.create!(
       password_confirmation: "foobar",
       profile: "こんにちはotherです！\r\n色々やってます！",
       favorite_game: "ドミニオン",
-      img: open("#{Rails.root}/db/fixtures/user/sample1.jpg"),
+      img: open("#{Rails.root}/db/fixtures/user/sample2.jpg"),
       confirmed_at: Time.current,
     },
   ]

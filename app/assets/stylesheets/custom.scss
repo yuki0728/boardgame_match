@@ -26,7 +26,7 @@ $eventlist_color: #2e2379;
   position: relative;
   padding: 5px 10px;
   margin: 3px;
-  max-width: 350px;
+  max-width: 250px;
   border-radius: 12px;
   font-size: 15px;
 }
@@ -44,6 +44,12 @@ $eventlist_color: #2e2379;
 body {
   background-color: $overall_backgorund_color;
   padding-top: 50px;
+  font-family: "Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    Meiryo,
+    sans-serif;
 }
 
 section {
@@ -63,9 +69,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
+  padding: 1rem 2rem;
+  border-left: 5px solid $accent_color;
+  background: #f4f4f4;
+}
+
+h2 {
   border-bottom: solid 3px $accent_color;
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 
   &:after {
     position: absolute;
@@ -122,6 +134,12 @@ input, textarea, select, .uneditable-input {
   a{
     text-decoration: none;
   }
+}
+
+.separator {
+  position: relative;
+  border-bottom: solid 1px $accent_color;
+  margin: 30px 0 30px 0;
 }
 
 .multiline-text {
@@ -204,6 +222,14 @@ input, textarea, select, .uneditable-input {
 
 .menubar {
   background-color: $menu_color;
+
+  &-list{
+    color: $gray;
+    a{
+      color: $gray;
+      font-size: 18px;
+    }
+  }
 }
 
 /* footer */
@@ -249,6 +275,13 @@ input, textarea, select, .uneditable-input {
   }
 }
 
+.user_info {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 /* user */
 
 .participant{
@@ -262,9 +295,33 @@ input, textarea, select, .uneditable-input {
 }
 
 .usershow{
-  img{
-    @include profile_img(100px)
+  &-box {
+    margin: 30px 30px;
+    text-align: center;
+    display: flex;
+
+    img{
+      @include profile_img(100px)
+    }
   }
+
+  &-name {
+    font-weight: bold;
+    font-size: 24px;
+    text-align: left;
+  }
+
+  &-profile {
+    max-width: 400px;
+    text-align: left;
+    margin: 20px 0 0 30px;
+  }
+
+  &-introduction {
+    text-align: left;
+    padding-left: 30px;
+  }
+  
 }
 
 .profile-icon{
@@ -273,7 +330,7 @@ input, textarea, select, .uneditable-input {
   }
 
   &-large{
-    @include profile_img(100px)
+    @include profile_img(60px)
   }
 }
 
@@ -287,6 +344,7 @@ input, textarea, select, .uneditable-input {
     margin-bottom: 10px;
     display: block;
     border-radius: 3px;
+    background-color: $center_color;
   }
 
   &-img{
@@ -307,11 +365,12 @@ input, textarea, select, .uneditable-input {
   &-name{
     font-size: 20px;
     font-weight: bold;
-    padding: 5px 3px;
+    padding: 1px 3px;
     p {
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      margin: 0;
     }
   }
 
@@ -343,6 +402,7 @@ input, textarea, select, .uneditable-input {
 
   &-tag{
     font-size: 15px;
+    padding-left: 10px;
   }
 
 }
@@ -351,10 +411,34 @@ input, textarea, select, .uneditable-input {
   &-box{
     font-size: 16px;
     font-weight: bold;
-    color: #1e366a;
-    border-bottom: solid #6b6b6b 0.5px;
     display: block;
     overflow: hidden;
+
+    table{ 
+      table-layout: fixed;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+
+    td {
+      width: 100%;
+    }
+    
+    th {
+      font-weight: bold;
+      background-color: #dedede;
+      width: 1px;
+      white-space: nowrap;
+    }
+
+    @media screen and (max-width: 767px) {
+      tr,
+      td,
+      th {display: block;}
+    }
   }
 
   &-tag{
@@ -374,6 +458,11 @@ input, textarea, select, .uneditable-input {
 
   &-img{
     width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    img {
+      max-height: 500px;
+    }
   }
 
   &-text{
@@ -432,4 +521,9 @@ input, textarea, select, .uneditable-input {
     width: 100%;
     height: 100%;
   }
+}
+
+.address_map{
+  width: 100%;
+  height: 300px;
 }
