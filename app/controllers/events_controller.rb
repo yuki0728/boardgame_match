@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   # ログイン必須ページを指定(ゲストはログインページへリダイレクト)
-  before_action :authenticate_user!, only: [:show, :edit, :new]
+  before_action :authenticate_user!, only: [:edit, :new]
   before_action :correct_user, only: :destroy
 
   def new

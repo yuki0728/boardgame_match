@@ -1,5 +1,8 @@
 <% flash.each do |key, value| %>
-  <div class="alert alert-<%= bootstrap_alert(key) %> alert-dismissible fade show time-limit">
-    <span><%= value %></span>
-  </div>
+  <%# タイムアウト時に余分なフラッシュメッセージが表示されてしまうバグを回避する %>
+  <% unless key=="timedout" then %>
+    <div class="alert alert-<%= bootstrap_alert(key) %> alert-dismissible fade show time-limit">
+      <span><%= value %></span>
+    </div>
+  <% end %>
 <% end %>
