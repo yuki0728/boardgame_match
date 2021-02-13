@@ -63,12 +63,12 @@ class Event < ApplicationRecord
 
   # イベントのオーナーか？
   def owner?(user)
-    user_id.equal? user.id
+    user_id.equal? user.id unless user.nil?
   end
 
   # イベントの参加者か？
   def participated_by?(user)
-    participations.where(user_id: user.id).exists?
+    participations.where(user_id: user.id).exists? unless user.nil?
   end
 
   # 参加人数が上限を超えていないかチェック
