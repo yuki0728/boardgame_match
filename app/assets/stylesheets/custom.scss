@@ -276,10 +276,23 @@ input, textarea, select, .uneditable-input {
 }
 
 .user_info {
-  text-align: center;
-  margin: 10px 0;
-  font-size: 18px;
-  font-weight: bold;
+  &-box{
+    text-align: center;
+    margin: 2px 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  &-stats {
+    font-weight: normal;
+    opacity: 0.6;
+    font-size: 12px;
+  }
+
+  &-button {
+    text-align: center;
+    margin: 5px 0;
+  }
 }
 
 /* user */
@@ -330,9 +343,23 @@ input, textarea, select, .uneditable-input {
   }
 
   &-large{
-    @include profile_img(60px)
+    @include profile_img(80px)
   }
 }
+
+.follow {
+  &-box {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    align-items: center;
+  }
+
+  &-count {
+    justify-content: center;
+  }
+}
+
 
 /* event */
 .eventlist{
