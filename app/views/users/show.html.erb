@@ -11,6 +11,12 @@
     <div class="usershow-name">
       <%= @user.username%>
     </div>
+    <div class="follow-box">
+      <div class="follow-count">
+        <%= render 'users/shared/stats' %>
+      </div>
+      <%= render 'users/shared/follow_form' if user_signed_in? %>
+    </div>
     <div class="usershow-profile">
       <%= @user.profile %>
     </div>
