@@ -43,7 +43,7 @@ $eventlist_color: #2e2379;
   border-bottom: solid $accent_color 0.5px;
   padding-bottom: 7px;
   margin-top: 7px;
-  border-color: rgba(0, 0, 0, 0.5)
+  border-color: rgba(0, 0, 0, 0.3)
 }
 
 /* universal */
@@ -593,8 +593,7 @@ input, textarea, select, .uneditable-input {
 
 .notification {
   &-box {
-    border-bottom: solid $accent_color 0.5px;
-    padding-bottom: 5px;
-    margin-top: 5px;
+    @include list_border;
+    font-size: 16px;
   }
 }
