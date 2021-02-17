@@ -37,6 +37,7 @@ ja:
         img: プロフィール画像
         address: 住所
         username: ユーザー名
+        profile: プロフィール
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
@@ -70,7 +71,7 @@ ja:
         confirm_new_password: "確認用新しいパスワード"
         new_password: "新しいパスワード"
       new:
-        forgot_your_password: "パスワードを忘れましたか?"
+        forgot_your_password: "パスワードを再設定"
         send_me_reset_password_instructions: "パスワードの再設定方法を送信する"
     registrations:
       edit:
@@ -92,7 +93,7 @@ ja:
         back: "戻る"
         didn_t_receive_confirmation_instructions: "アカウント確認のメールを受け取っていませんか?"
         didn_t_receive_unlock_instructions: "アカウントの凍結解除方法のメールを受け取っていませんか?"
-        forgot_your_password: "パスワードを忘れましたか?"
+        forgot_your_password: "パスワードがわからない"
         sign_in: "ログイン"
         sign_in_with_provider: "%{provider}でログイン"
         sign_up: "アカウント登録"
