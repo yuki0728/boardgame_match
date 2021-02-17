@@ -20,7 +20,7 @@
 
   <%= render 'layouts/header' %>
   <body>
-    <%= render 'layouts/menubar', title: yield(:title)  %>
+    <%= render 'layouts/menubar', title: yield(:title), before_page_title: yield(:before_page_title) %>
     <%= render 'layouts/flashes' %>
     <div class="container main">
       <%= yield %>

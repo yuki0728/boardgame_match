@@ -1,5 +1,13 @@
-<%= form_for (@event), url:event_path do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
+<% provide(:title, 'イベント編集') %>
+<% provide(:before_page_title, @event.name) %>
 
-  <%= render 'form', f: f %>
-<% end %>
+<div class="event_form-box">
+  <div class="event_form-content center">
+    <h2>イベント編集</h2>
+    <%= form_for (@event), url:event_path do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+
+      <%= render 'form', f: f %>
+    <% end %>
+  </div>
+</div>
