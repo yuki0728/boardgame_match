@@ -466,6 +466,18 @@ input, textarea, select, .uneditable-input {
 
 }
 
+.event_form{
+  &-box {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-content {
+    padding: 5px 10px 0 10px;
+    width: 450px;
+  }
+}
+
 .eventshow{
   &-box{
     font-size: 16px;

@@ -3,6 +3,9 @@
     <div class="navbar-brand">
       <ol class="breadcrumb">
         <li><%= link_to "Home", root_path %></li>
+        <% if before_page_title.present? %>
+          <li><%= before_page_title %></li>
+        <% end %>
         <% if request.fullpath != root_path %>
           <li><%= title %></li>
         <% end %>
