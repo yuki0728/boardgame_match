@@ -178,3 +178,10 @@ end
 (2..5).each do |n|
   Participation.create!(user_id: n, event_id: 3)
 end
+
+# フォロワー
+(1..6).each do |n|
+  (1..10).each do |m|
+    User.find(n).active_relationships.create(followed_id: m)
+  end
+end

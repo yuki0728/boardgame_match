@@ -39,15 +39,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def following
-    @title = "フォロー"
     @user  = User.find(params[:id])
+    @title = @user.username << "さんがフォロー中"
     @users = @user.following
     render 'show_follow'
   end
 
   def followers
-    @title = "フォロワー"
     @user  = User.find(params[:id])
+    @title = @user.username << "さんのフォロワー"
     @users = @user.followers
     render 'show_follow'
   end
