@@ -11,6 +11,7 @@ class EventsController < ApplicationController
     @event = Event.create(events_params)
     @event.user_id = current_user.id
     if @event.save
+      @event.participations.build(user_id: @event.user_id).save
       redirect_to @event, success: "イベントを作成しました"
     else
       flash.now[:danger] = 'イベントの作成に失敗しました'
