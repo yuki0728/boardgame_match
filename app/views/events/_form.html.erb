@@ -1,33 +1,31 @@
 <%= f.label :name %>
-<%= f.text_field :name, class: 'form-control' %>
+<%= f.text_field :name, class: 'form-control', placeholder: "例: 東京でボードゲームオフ会を開催します！"  %>
 
 <%= f.label :text %>
-<%= f.text_field :text, class: 'form-control' %>
+<%= f.text_area :text, class: 'form-control', placeholder: "例: 東京の方、集まって一緒にボードゲームをしましょう。"  %>
 
-<%= f.label :start_time %>
-<div class="input-group" data-target-input="nearest">
-  <%= f.text_field :start_time, id: "start_time", class: "form-control datetimepicker", data: { target: '#start_time'} %>
-  <div class="input-group-append" data-target="#start_time" data-toggle="datetimepicker">
-    <div class="input-group-text"><i class="fa fa-calendar"></i></div><br>
+<div class="form-row align-items-center">
+  <div class="col-auto">
+    <%= f.label :start_time, class: 'control-label' %>
+    <%= f.datetime_field :start_time, class: 'form-control' %>
   </div>
-</div>
-
-<%= f.label :ending_time %>
-<div class="input-group" data-target-input="nearest">
-  <%= f.text_field :ending_time, id: "ending_time", class: "form-control datetimepicker", data: { target: '#ending_time'} %>
-  <div class="input-group-append" data-target="#ending_time" data-toggle="datetimepicker">
-    <div class="input-group-text"><i class="fa fa-calendar"></i></div><br>
+  <div class="col-auto">
+    <%= f.label :ending_time, class: 'control-label' %>
+    <%= f.datetime_field :ending_time, class: 'form-control' %>
   </div>
 </div>
 
 <%= f.label :address %>
-<%= f.text_field :address, class: 'form-control' %>
+<%= f.text_field :address, class: 'form-control', placeholder: '例: ○○県 ××市 △△町' %>
+
+<%= f.label :place %>
+<%= f.text_field :place, class: 'form-control', placeholder: '例: ボードゲームカフェ〇〇' %>
 
 <%= f.label :participant_limit %>
-<%= f.number_field :participant_limit %>
+<%= f.number_field :participant_limit, class: 'form-control' %>
 
 <%= f.label :tag_list %>
-<%= f.text_field :tag_list, value: @event.tag_list.join(','), class: "form-control" %>
+<%= f.text_field :tag_list, value: @event.tag_list.join(','), class: 'form-control tag_form' %>
 
 <%= f.label :img %>
 <%= f.file_field :img %>

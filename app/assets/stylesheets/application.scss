@@ -11,7 +11,9 @@
  * It is generally better to create a new file per style scope.
  *
  *= require jquery-ui/datepicker
+ *= require jquery-ui
+ *= require jquery.tagit
+ *= require tagit.ui-zendesk
  *= require_tree .
  *= require_self
  */
- 

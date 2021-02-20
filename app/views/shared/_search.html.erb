@@ -2,22 +2,17 @@
   <div class="sidebar-title">
     イベント検索
   </div>
-  <div class="sidebar-search">
+  <div class="sidebar-search form-group">
     <%= form_with(scope: :event_search, url: url, method: :get, local: send_locally) do |f| %>
 
       <%= f.label :name, 'イベント名' %>
-      <%= f.text_field :name ,value:search_params[:name] ,class: 'search_container' %><br>
+      <%= f.text_field :name, class: 'form-control',value:search_params[:name], placeholder: "例: オフ会,大会" %><br>
 
       <%= f.label :tag_list, 'タグ' %>
-      <%= f.text_field :tag_list ,value:search_params[:tag_list] %><br>
+      <%= f.text_field :tag_list, class: "form-control tag_form", value:search_params[:tag_list] %><br>
 
-      <%= f.label :date, '日にち' %>
-      <div class="input-group" data-target-input="nearest">
-        <%= f.text_field :date,value:search_params[:date] , id: "date", class: "form-control datepicker", data: { target: '#date'} %>
-        <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
-          <div class="input-group-text"><i class="fa fa-calendar"></i></div><br>
-        </div>
-      </div>
+      <%= f.label :date, '開催日' %>
+      <%= f.date_field :date, class: 'form-control',value:search_params[:date] ,placeholder: "例: " << I18n.localize(Date.today) %>
 
       <br>
 
