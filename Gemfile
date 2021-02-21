@@ -58,10 +58,6 @@ gem 'rmagick'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 
-# datetimepicker
-gem 'momentjs-rails'
-gem 'bootstrap4-datetime-picker-rails'
-
 # Google map
 gem 'geocoder'
 gem 'gmaps4rails'

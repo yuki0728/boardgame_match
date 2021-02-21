@@ -20,8 +20,3 @@
 //= require gmaps/google
 //= require tag-it
 //= require_tree .
-
-//= require popper
-//= require moment
-//= require moment/ja.js
-//= require tempusdominus-bootstrap-4.js
