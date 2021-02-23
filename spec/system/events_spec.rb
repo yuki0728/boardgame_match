@@ -9,11 +9,11 @@ RSpec.describe "Events", type: :system do
     event = attributes_for(:event)
     visit root_path
     expect do
-      click_on "イベント作成"
+      find("#create_event_btn").click
       fill_in I18n.t(:"activerecord.attributes.event.name"), with: event[:name]
       fill_in I18n.t(:"activerecord.attributes.event.text"), with: event[:text]
-      select_datetime(event[:start_time], from: I18n.t(:"activerecord.attributes.event.start_time"))
-      select_datetime(event[:ending_time], from: I18n.t(:"activerecord.attributes.event.ending_time"))
+      fill_in I18n.t(:"activerecord.attributes.event.start_time"), with: event[:start_time]
+      fill_in I18n.t(:"activerecord.attributes.event.ending_time"), with: event[:ending_time]
       fill_in I18n.t(:"activerecord.attributes.event.participant_limit"), with: event[:participant_limit]
       fill_in I18n.t(:"activerecord.attributes.event.tag_list"), with: event[:tag_list]
       click_on I18n.t(:"helpers.submit.create")
@@ -29,7 +29,7 @@ RSpec.describe "Events", type: :system do
     expect do
       click_on event.name
       click_on "イベント削除"
-      expect(current_path).to eq events_path
+      expect(current_path).to eq root_path
     end.to change(Event, :count).by(-1)
   end
 

@@ -10,7 +10,7 @@ RSpec.describe "Participations", type: :system do
     visit root_path
     expect do
       click_on event.name
-      click_on "イベント参加"
+      click_on "参加"
       expect(current_path).to eq event_path(event.id)
     end.to change(Participation, :count).by(1)
   end
@@ -22,7 +22,7 @@ RSpec.describe "Participations", type: :system do
     visit root_path
     expect do
       click_on event.name
-      click_on "イベント参加取り消し"
+      click_on "参加取り消し"
       expect(current_path).to eq event_path(event.id)
     end.to change(Participation, :count).by(-1)
   end
