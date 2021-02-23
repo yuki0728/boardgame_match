@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Participantion", type: :request do
   let!(:user) { create(:user) }
-  let!(:event) { create(:event, user_id: user.id) }
+  let!(:other_user) { create(:user) }
+  let!(:event) { create(:event, user_id: other_user.id) }
 
   describe 'POST #create' do
     before do

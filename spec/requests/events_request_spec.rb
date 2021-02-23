@@ -28,11 +28,10 @@ RSpec.describe "Events", type: :request do
 
     it_behaves_like 'Check_request_success'
 
-    it 'イベント名及び本文が表示されていること' do
+    it 'イベント名が表示されていること' do
       aggregate_failures do
         0.upto(2).each do |index|
           expect(response.body).to include events[index].name
-          expect(response.body).to include events[index].text
         end
       end
     end
@@ -60,16 +59,6 @@ RSpec.describe "Events", type: :request do
           expect { get event_url(1) }.to raise_error ActiveRecord::RecordNotFound
         end
       end
-    end
-
-    context 'ログインしていない場合' do
-      let!(:event) { create(:event) }
-
-      before do
-        get event_url(event.id)
-      end
-
-      it_behaves_like 'Check_redirect_to_sign_in_page'
     end
   end
 
@@ -220,9 +209,9 @@ RSpec.describe "Events", type: :request do
       end.to change(Event, :count).by(-1)
     end
 
-    it 'イベント一覧にリダイレクトすること' do
+    it 'ルートパスにリダイレクトすること' do
       delete event_url event
-      expect(response).to redirect_to(events_url)
+      expect(response).to redirect_to(root_path)
     end
   end
 end
