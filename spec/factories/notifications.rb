@@ -3,7 +3,7 @@ FactoryBot.define do
     visiter_id { 1 }
     visited_id { 2 }
     event_id { 1 }
-    action { "MyString" }
+    action { "participation" }
     checked { false }
   end
 end
