@@ -1,4 +1,6 @@
 class NotificationsController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :destroy_all]
+
   def index
     @notifications = current_user.passive_notifications
     @notifications.where(checked: false).each do |notification|
