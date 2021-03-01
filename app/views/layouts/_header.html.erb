@@ -11,31 +11,27 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li class='nav-item' >
-              <%= link_to "マイページ", user_path(current_user.id), class: "d-none d-md-block nav-link rounded-pill" %>
-              <%= link_to "マイページ", user_path(current_user.id), class: "d-block d-md-none nav-link" %>
+              <%= render 'layouts/nav_link', text: content_tag(:i, 'マイページ', class: 'fa fa-user'), path: user_path(current_user.id) %>
             </li>
             <li class='nav-item' >
-              <%= link_to '地図から検索', maps_path, class: "d-block d-md-none nav-link" %>
+              <%= render 'layouts/nav_link', text: content_tag(:i, 'プロフィール変更', class: 'fa fa-edit'), path: edit_user_registration_path %>
             </li>
             <li class='nav-item' >
-              <%= link_to 'リストから検索', events_path, class: "d-block d-md-none nav-link" %>
+              <%= link_to content_tag(:i, 'リストから検索', class: 'fa fa-search'), events_path, class: "d-block d-md-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "d-none d-md-block nav-link rounded-pill" %>
-              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "d-block d-md-none nav-link" %>
-            </li>
-            <li class='nav-item' >
-              <%= link_to 'ログアウト', destroy_user_session_path, class: "d-none d-md-block nav-link rounded-pill" %>
-              <%= link_to 'ログアウト', destroy_user_session_path, class: "d-block d-md-none nav-link" %>
+              <%= link_to content_tag(:i, '地図から検索', class: 'fa fa-map-o'), maps_path, class: "d-block d-md-none nav-link" %>
             </li>
             <li class='nav-item' >
               <%= link_to notifications_path, class: "d-none d-md-block nav-link rounded-pill" do %>
+                <i class="fa fa-bell-o "></i> 
                 通知
                 <%if notifications_unchecked? %>
                   <i class="fa fa-circle" style="color: gold;"></i>
                 <% end %>
               <% end %>
               <%= link_to notifications_path, class: "d-block d-md-none nav-link" do %>
+                <i class="fa fa-bell-o "></i> 
                 通知
                 <%if notifications_unchecked? %>
                   <i class="fa fa-circle" style="color: gold;"></i>
@@ -43,20 +39,21 @@
               <% end %>
             </li>
             <li class='nav-item' >
-              <%= link_to 'イベント作成', new_event_path, class: "d-block d-md-none nav-link" %>
+              <%= link_to content_tag(:i, 'イベント作成', class: 'fa fa-edit'), new_event_path, class: "d-block d-md-none nav-link" %>
+            </li>
+            <li class='nav-item' >
+              <%= render 'layouts/nav_link', text: content_tag(:i, 'ログアウト', class: 'fa fa-sign-out'), path: destroy_user_session_path %>
             </li>
           <% else %>
             <li class='nav-item' >
-              <%= link_to 'サインアップ', new_user_registration_path, class: "d-none d-md-block nav-link rounded-pill" %>
-              <%= link_to 'サインアップ', new_user_registration_path, class: "d-block d-md-none nav-link" %>
+              <%= render 'layouts/nav_link', text: 'サインアップ', path: new_user_registration_path %>
             </li>
             <li>
               <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "d-none d-md-block nav-link rounded-pill" %>
               <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "d-block d-md-none nav-link" %>
             </li>
             <li class='nav-item' >
-              <%= link_to 'ログイン', new_user_session_path, class: "d-none d-md-block nav-link rounded-pill" %>
-              <%= link_to 'ログイン', new_user_session_path, class: "d-block d-md-none nav-link" %>
+              <%= render 'layouts/nav_link', text: 'ログイン', path: new_user_session_path %>
             </li>
           <% end %>
         </ul>
