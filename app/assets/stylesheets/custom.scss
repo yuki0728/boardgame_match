@@ -59,6 +59,27 @@ $eventlist_color: #2e2379;
   z-index: 1;
 }
 
+@mixin form {
+  &-box {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-content {
+    padding: 5px 10px 20px 10px;
+    width: 500px;
+    font-size: 20px;
+
+    label, input[type="submit"] {
+      margin-top: 30px;
+    }
+
+    textarea {
+      height: 200px;
+    }
+  }
+}
+
 /* universal */
 
 body {
@@ -97,7 +118,7 @@ h1 {
 h2 {
   border-bottom: solid 3px $accent_color;
   position: relative;
-  margin-bottom: 5px;
+  margin: 5px 0 5px 0;
 
   &:after {
     position: absolute;
@@ -265,7 +286,7 @@ input, textarea, select, .uneditable-input {
 .center{
   background-color: $center_color;
   border-radius: 5px;
-  padding-top: 20px;
+  padding-top: 10px;
   box-shadow: 0 0 3px 0 rgba(0,0,0,.12), 0 2px 3px 0 rgba(0,0,0,.22);
 }
 
@@ -360,15 +381,7 @@ input, textarea, select, .uneditable-input {
 }
 
 .userform{
-  &-box {
-    display: flex;
-    justify-content: center;
-  }
-
-  &-content {
-    padding: 5px 10px 0 10px;
-    width: 450px;
-  }
+  @include form;
 
   &-link {
     font-size: 12px;
@@ -496,23 +509,7 @@ input, textarea, select, .uneditable-input {
 }
 
 .event_form{
-  &-box {
-    display: flex;
-    justify-content: center;
-  }
-
-  &-content {
-    padding: 5px 10px 0 10px;
-    width: 500px;
-
-    label {
-      margin-top: 30px;
-    }
-
-    textarea {
-      height: 200px;
-    }
-  }
+  @include form;
 }
 
 .eventshow{
