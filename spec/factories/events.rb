@@ -9,6 +9,7 @@ FactoryBot.define do
     place { "ボードゲームカフェ" }
     participant_limit { 4 }
     tag_list { "トランプ,東京" }
+    img { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/event_sample.jpg')) }
 
     trait :invalid do
       name { nil }
