@@ -8,6 +8,7 @@ class RelationshipsController < ApplicationController
       format.html { redirect_to @user }
       format.js
     end
+    @user.create_notification_follow!(current_user)
   end
 
   def destroy

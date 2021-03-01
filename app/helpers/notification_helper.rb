@@ -15,6 +15,9 @@ module NotificationHelper
       "さんが「" <<
       tag.a(event.name, href: event_path(event)) <<
       "」の参加をキャンセルしました。"
+    when "follow" then
+      tag.a(visiter.username, href: user_path(visiter)) <<
+      "さんがあなたをフォローしました。"
     end
   end
 
