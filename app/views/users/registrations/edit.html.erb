@@ -8,13 +8,13 @@
       <%= render 'layouts/error_messages', model: resource %>
 
       <%= f.label :username %>
-      <%= f.text_field :username, autofocus: true, fclass: 'form-control' %>
+      <%= f.text_field :username, autofocus: true, class: 'form-control' %>
 
       <%= f.label :profile %>
       <%= f.text_area :profile, class: 'form-control' %>
 
       <%= f.label :img %>
-      <%= f.file_field :img %>
+      <%= f.file_field :img, class: 'form-control' %>
 
       <div class="field">
         <%= f.label :email %><br />
