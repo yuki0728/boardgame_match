@@ -14,11 +14,14 @@ class Participation < ApplicationRecord
 
   # 参加、不参加時にオーナーに通知する
   def notify_owner_by(user, action)
-    notification = user.active_notifications.new(
-      event_id: event_id,
-      visited_id: event.user.id,
-      action: action
-    )
-    notification.save if notification.valid?
+    temp = Notification.where(["event_id = ? and visited_id = ? and action = ? ", event_id, event.user.id, action])
+    if temp.blank?
+      notification = user.active_notifications.new(
+        event_id: event_id,
+        visited_id: event.user.id,
+        action: action
+      )
+      notification.save if notification.valid?
+    end
   end
 end
