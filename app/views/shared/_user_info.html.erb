@@ -11,7 +11,7 @@
         <%= render 'users/shared/stats' %>
       </div>
       <div class="user_info-button">
-        <%= link_to 'イベント作成', new_event_path, class:"btn btn-light", id:"create_event_btn" %>
+        <%= link_to content_tag(:i, 'イベント作成', class: 'fa fa-edit'), new_event_path, class:"btn btn-light", id:"create_event_btn" %>
       </div>
     </div>
   </div>

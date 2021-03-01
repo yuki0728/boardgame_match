@@ -12,9 +12,9 @@
       </ol>
     </div>
     <div class="navbar-brand menubar-list">
-      <%= link_to 'リストから検索', events_path%>
+      <%= link_to content_tag(:i, 'リストから検索', class: 'fa fa-search'), events_path %>
       /
-      <%= link_to '地図から検索', maps_path %>
+      <%= link_to content_tag(:i, '地図から検索', class: 'fa fa-map-o'), maps_path %>
     </div>
   </div>
 </nav>
