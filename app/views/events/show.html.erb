@@ -45,7 +45,11 @@
       </table>
       <% if @event.owner?(current_user) %>
         <%= link_to "イベント編集", edit_event_path(@event) %>
-        <%= link_to "イベント削除", event_path(@event) ,method: :delete %>
+        <%= link_to "イベント削除", event_path(@event), method: :delete,
+                          data: { confirm: "本当に削除してもよろしいでしょうか？",
+                                  "commit" => "削除する",
+                                  "cancel" => "やめる",
+                                  }, title: "イベント削除の確認" %>
       <% end %>
     </div>
 
