@@ -14,6 +14,8 @@
       <%= f.label :date, '開催日' %>
       <%= f.date_field :date, class: 'form-control',value:search_params[:date] ,placeholder: "例: " << I18n.localize(Date.today) %>
 
+      <%= f.hidden_field :keyword ,value: @search_params[:keyword] %>
+
       <br>
 
       <% unless request.path.include?("maps") %>
