@@ -3,15 +3,13 @@
     <div class="eventlist-name">
       <p><%= event.name %></p>
     </div>
-    <div class="eventlist-tag">
-      <object>
-        <% event.tag_list.each do |tag| %>
-          <span class="badge badge-primary">
-            <%= link_to tag, events_path(tag_name: tag), class: "text-white" %>
-          </span>
-        <% end %>
-      </object>
-    </div>
+    <object class="eventlist-tag_list">
+      <% event.tag_list.each do |tag| %>
+        <span class="badge badge-primary eventlist-tag">
+          <%= link_to tag, events_path(tag_name: tag), class: "text-white" %>
+        </span>
+      <% end %>
+    </object>
     <div class="eventlist-img">
       <% if event.participations.count == event.participant_limit %>
         <p class="eventlist-stamp_red">参加不可</p>

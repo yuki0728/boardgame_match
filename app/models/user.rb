@@ -54,6 +54,13 @@ class User < ApplicationRecord
     active_relationships.find_by(followed_id: other_user.id).destroy
   end
 
+  # 有効なイベント(開始していないイベント)のみ取得
+  def following_user_events
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE follower_id = :user_id"
+    Event.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
+  end
+
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)

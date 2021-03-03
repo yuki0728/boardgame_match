@@ -43,9 +43,13 @@ class Event < ApplicationRecord
       sorting(search_params[:keyword])
   end
 
+  # 有効なイベント(開始していないイベント)のみ取得
   scope :valid_events, -> { where("start_time > ?", DateTime.now) }
+  # イベント名の検索
   scope :name_like, -> (name) { where('name LIKE ?', "%#{name}%") if name.present? }
+  # タグの検索
   scope :find_by_tag, -> (tags) { tagged_with(tags, any: true) if tags.present? }
+  # 開催日の検索
   scope :find_by_start_time, -> (date) {
     if date.present?
       where(start_time: date.to_date.midnight..(date.to_date.midnight + 1.day)).
@@ -53,6 +57,7 @@ class Event < ApplicationRecord
     end
   }
 
+  # 並び替え機能
   scope :sorting, -> (sort) { order(sort) }
   scope :sort_list, -> {
     {

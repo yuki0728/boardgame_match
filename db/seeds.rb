@@ -105,6 +105,11 @@ name = [
 
 comment = ['はじめまして', '誰かいますか？', 'おーい']
 
+prefectures = [
+  '愛知県', '愛知県', '東京都', '東京都', '大阪府', '大阪府',
+  '福岡県', '北海道', '東京都', '東京都', '愛知県',
+]
+
 address = [
   '愛知県名古屋市中区大須３丁目３８−１３ 喜久屋大須ビル',
   '愛知県名古屋市中区大須３丁目１８−８ 赤門ビル2階',
@@ -145,11 +150,11 @@ place = [
     start_time: start_time,
     ending_time: start_time.since(3.hours),
     participant_limit: participant_limit,
-    tag_list: "#{name[n % 11]},#{address[n % 11]}",
+    tag_list: "#{name[n % 11]},#{prefectures[n % 11]}",
     user_id: user_id,
     created_at: DateTime.current.since(n.seconds),
     img: image,
-    place: place[n%11],
+    place: place[n % 11],
     address: address[n % 11]
   )
 
@@ -164,10 +169,8 @@ place = [
   Participation.create!(user_id: user_id, event_id: event_id)
 end
 
-# 参加者
-Participation.create!(user_id: 1, event_id: 1)
-
-(4..20).each do |n|
+# イベント参加
+(4..8).each do |n|
   Participation.create!(user_id: 1, event_id: n)
 end
 
@@ -180,7 +183,7 @@ end
 end
 
 # フォロワー
-(1..6).each do |n|
+(1..7).each do |n|
   (1..10).each do |m|
     User.find(n).active_relationships.create(followed_id: m)
   end
