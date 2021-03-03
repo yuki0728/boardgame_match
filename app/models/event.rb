@@ -36,12 +36,14 @@ class Event < ApplicationRecord
   scope :event_search, -> (search_params) do
     return if search_params.blank?
 
-    name_like(search_params[:name]).
+    valid_events.
+      name_like(search_params[:name]).
       find_by_tag(search_params[:tag_list]).
       find_by_start_time(search_params[:date]).
       sorting(search_params[:keyword])
   end
 
+  scope :valid_events, -> { where("start_time > ?", DateTime.now) }
   scope :name_like, -> (name) { where('name LIKE ?', "%#{name}%") if name.present? }
   scope :find_by_tag, -> (tags) { tagged_with(tags, any: true) if tags.present? }
   scope :find_by_start_time, -> (date) {

@@ -9,9 +9,9 @@
   <div class="col-md-9 center">
     <h2>リスト</h2>
     <%= form_with(scope: :event_search, url: events_path, method: :get) do |f| %>
-      <%= f.hidden_field :name ,value:@search_params[:name] %>
-      <%= f.hidden_field :tags ,value:@search_params[:tag_list] %>
-      <%= f.hidden_field :date ,value:@search_params[:date] %>
+      <%= f.hidden_field :name ,value: @search_params[:name] %>
+      <%= f.hidden_field :tags ,value: @search_params[:tag_list] %>
+      <%= f.hidden_field :date ,value: @search_params[:date] %>
       <%= f.select :keyword, @sort_list, { selected: @search_params[:keyword] }, onChange: "javascript: this.form.submit();" %><br>
     <% end %>
     <div class="row">
