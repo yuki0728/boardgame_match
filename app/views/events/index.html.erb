@@ -7,7 +7,7 @@
     <%= render 'shared/search', url: events_path, send_locally: true, search_params: @search_params %>
   </div>
   <div class="col-md-9 center">
-    <h2>リスト</h2>
+    <h2><%= @title %></h2>
     <%= form_with(scope: :event_search, url: events_path, method: :get) do |f| %>
       <%= f.hidden_field :name ,value: @search_params[:name] %>
       <%= f.hidden_field :tags ,value: @search_params[:tag_list] %>
@@ -17,7 +17,7 @@
     <div class="row">
       <% @events.each do |event| %>
         <div class="col-sm-6">
-          <%= render 'feed', event: event %>
+          <%= render 'events/feed', event: event %>
         </div>
       <% end %>
     </div>

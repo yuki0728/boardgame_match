@@ -80,6 +80,19 @@ $eventlist_color: #2e2379;
   }
 }
 
+@mixin tag_list($font-size) {
+  &-tag_list{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 10px;
+  }
+
+  &-tag{
+    margin: 1px;
+    font-size: $font-size;
+  }
+}
+
 /* universal */
 
 body {
@@ -501,10 +514,7 @@ input, textarea, select, .uneditable-input {
     line-height: 16px;
   }
 
-  &-tag{
-    font-size: 15px;
-    padding-left: 10px;
-  }
+  @include tag_list(10px)
 
 }
 
@@ -548,9 +558,7 @@ input, textarea, select, .uneditable-input {
     }
   }
 
-  &-tag{
-    font-size: 20px;
-  }
+  @include tag_list(15px);
 
   &-time{
     width: 100%;

@@ -9,13 +9,13 @@
   <div class="col-md-9 center">
     <div class="eventshow-box">
       <h2>イベント内容</h2>
-      <div class="eventshow-tag">
-        <% @event.tag_list.each do |tag| %>
-          <span class="badge badge-primary">
-            <%= link_to tag, events_path(tag_name: tag), class: "text-white" %>
-          </span>
-        <% end %>
-      </div>
+    <object class="eventshow-tag_list">
+      <% @event.tag_list.each do |tag| %>
+        <span class="badge badge-primary eventshow-tag">
+          <%= link_to tag, events_path(tag_name: tag), class: "text-white" %>
+        </span>
+      <% end %>
+    </object>
       <div class="eventshow-img">
         <% if @event.img? %>
           <%= image_tag @event.img.url %>
