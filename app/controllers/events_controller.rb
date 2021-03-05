@@ -27,7 +27,7 @@ class EventsController < ApplicationController
       @events = Event.tagged_with("#{params[:tag_name]}").page(params[:page]).per(MAX_DISPLAY_EVENTS)
       @search_params[:tag_list] = params[:tag_name]
     elsif @search_params == {}
-      @title = "全てのユーザーのイベント"
+      @title = "全ユーザーのイベント"
       # 検索していない場合でもイベント一覧は表示する。
       @events = Event.page(params[:page]).per(MAX_DISPLAY_EVENTS)
     else
