@@ -7,13 +7,15 @@
     <%= render 'shared/search', url: events_path, send_locally: true, search_params: @search_params %>
   </div>
   <div class="col-md-9 center">
-    <h2><%= @title %></h2>
-    <%= form_with(scope: :event_search, url: events_path, method: :get) do |f| %>
-      <%= f.hidden_field :name ,value: @search_params[:name] %>
-      <%= f.hidden_field :tags ,value: @search_params[:tag_list] %>
-      <%= f.hidden_field :date ,value: @search_params[:date] %>
-      <%= f.select :keyword, @sort_list, { selected: @search_params[:keyword] }, onChange: "javascript: this.form.submit();" %><br>
-    <% end %>
+    <h2>
+      <%= @title %>
+      <div class="d-none d-md-block eventlist-order">
+        <%= render 'events/events_order' %>
+      </div>
+    </h2>
+    <div class="d-block d-md-none">
+      <%= render 'events/events_order' %>
+    </div>
     <div class="row">
       <% @events.each do |event| %>
         <div class="col-sm-6">
