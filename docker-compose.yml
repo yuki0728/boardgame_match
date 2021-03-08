@@ -1,0 +1,24 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: boardgame_match_development
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql # データの永続化
+    command: --default-authentication-plugin=mysql_native_password # 認証方式を8系以前のものにする。
+
+  web:
+    build: .
+    volumes:
+      - .:/app_name
+    ports:
+      - "3000:3000"
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    links:
+      - db
+volumes:
+  mysql_data: # データボリュームの登録
