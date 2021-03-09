@@ -11,14 +11,26 @@ services:
       - mysql_data:/var/lib/mysql # データの永続化
     command: --default-authentication-plugin=mysql_native_password # 認証方式を8系以前のものにする。
 
-  web:
+  app:
     build: .
+    command: bundle exec puma -C config/puma.rb
     volumes:
-      - .:/app_name
+      - .:/boardgame_match
+      - public-data:/boardgame_match/public
+      - tmp-data:/boardgame_match/tmp
+      - log-data:/boardgame_match/log
+
+  web:
+    build:
+      context: containers/nginx
+    volumes:
+      - public-data:/boardgame_match/public
+      - tmp-data:/boardgame_match/tmp
     ports:
-      - "3000:3000"
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
-    links:
-      - db
+      - 80:80
+
 volumes:
   mysql_data: # データボリュームの登録
+  public-data:
+  tmp-data:
+  log-data:
