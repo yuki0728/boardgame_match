@@ -1,26 +1,36 @@
 version: '3'
 services:
-# =========ローカルと本番切り替え===========
-#  db:
-#    image: mysql:8.0
-#    environment:
-#      MYSQL_ROOT_PASSWORD: password
-#      MYSQL_DATABASE: boardgame_match_development
-#    ports:
-#      - "3306:3306"
-#    volumes:
-#      - mysql_data:/var/lib/mysql # データの永続化
-#    command: --default-authentication-plugin=mysql_native_password # 認証方式を8系以前のものにする。
-# ======================================
+# =========本番環境ではコメントアウトすること！===========
+  #db:
+  #  image: mysql:8.0
+  #  environment:
+  #    MYSQL_ROOT_PASSWORD: password
+  #    MYSQL_DATABASE: boardgame_match_development
+  #  ports:
+  #    - "3306:3306"
+  #  volumes:
+  #    - mysql_data:/var/lib/mysql # データの永続化
+  #  command: --default-authentication-plugin=mysql_native_password # 認証方式を8系以前のものにする。
+  #  networks:
+  #    - boardgame_match-network
+# =================================================
 
   app:
-    build: .
-    command: bundle exec puma -C config/puma.rb
+    build:
+      context: .
+  # =========ローカルと本番切り替え===========
+    # 本番用
+    command: bundle exec puma -C config/puma.rb -e production
+    # ローカル用
+    # command: bundle exec puma -C config/puma.rb
+  # ======================================
     volumes:
       - .:/boardgame_match
       - public-data:/boardgame_match/public
       - tmp-data:/boardgame_match/tmp
       - log-data:/boardgame_match/log
+    networks:
+      - boardgame_match-network
 
   web:
     build:
@@ -30,9 +40,17 @@ services:
       - tmp-data:/boardgame_match/tmp
     ports:
       - 80:80
+    depends_on:
+      - app
+    networks:
+      - boardgame_match-network
 
 volumes:
-#  mysql_data: # データボリュームの登録
+  mysql_data: # データボリュームの登録
   public-data:
   tmp-data:
   log-data:
+
+networks:
+  boardgame_match-network:
+    external: true
