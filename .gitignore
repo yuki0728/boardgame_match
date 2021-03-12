@@ -33,4 +33,4 @@ capybara-*.html
 /tmp
 # 投稿画像は含まない
 /public/uploads/
-/.env
+.env
