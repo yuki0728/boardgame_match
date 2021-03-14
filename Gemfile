@@ -54,6 +54,7 @@ gem 'data-confirm-modal'
 # 画像
 gem 'carrierwave'
 gem 'rmagick'
+gem 'fog'
 
 # ページネイション
 gem 'kaminari'
