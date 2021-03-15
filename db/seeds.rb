@@ -188,3 +188,19 @@ end
     User.find(n).active_relationships.create(followed_id: m)
   end
 end
+
+User.create!(
+  [
+    {
+      username: 'admin',
+      email: 'admin@example.com',
+      password: ENV['ADMIIN_USER_PASSWORD'],
+      password_confirmation: ENV['ADMIIN_USER_PASSWORD'],
+      profile: "管理人です。",
+      favorite_game: "カタン",
+      img: open("#{Rails.root}/db/fixtures/user/sample0.jpg"),
+      confirmed_at: Time.current,
+      admin: TRUE,
+    },
+  ]
+)
