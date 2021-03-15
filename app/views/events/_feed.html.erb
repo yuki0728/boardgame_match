@@ -11,7 +11,7 @@
       <% end %>
     </object>
     <div class="eventlist-img">
-      <% if event.participations.count == event.participant_limit %>
+      <% if event.participations.count == event.participant_limit || event.start_time < Time.now %>
         <p class="eventlist-stamp_red">参加不可</p>
       <% else %>
         <p class="eventlist-stamp_green">参加可</p>
