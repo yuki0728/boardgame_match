@@ -36,7 +36,7 @@ class Event < ApplicationRecord
   scope :event_search, -> (search_params) do
     return if search_params.blank?
 
-    valid_events.
+    valid_events(search_params[:exclusion]).
       name_like(search_params[:name]).
       find_by_tag(search_params[:tag_list]).
       find_by_start_time(search_params[:date]).
@@ -44,8 +44,10 @@ class Event < ApplicationRecord
   end
 
   # 有効なイベント(参加できるイベント)のみ取得
-  scope :valid_events, -> {
-    where("participations_count < participant_limit AND start_time > ?", DateTime.current)
+  scope :valid_events, -> (exclusion) {
+    if exclusion
+      where("participations_count < participant_limit AND start_time > ?", DateTime.current)
+    end
   }
   # イベント名の検索
   scope :name_like, -> (name) { where('name LIKE ?', "%#{name}%") if name.present? }

@@ -78,6 +78,7 @@ $eventlist_color: #2e2379;
       display:inline;
       width: 20px;
       transform: scale(1.5);
+      vertical-align:middle;
     }
 
     textarea {
@@ -343,6 +344,15 @@ input, textarea, select, .uneditable-input {
 
   &-search{
     padding: 5px;
+
+    &-checkbox{
+      input[type="radio"],input[type="checkbox"]{
+        display:inline;
+        width: 20px;
+        transform: scale(1);
+        vertical-align:middle;
+      }
+    }
   }
 }
 
