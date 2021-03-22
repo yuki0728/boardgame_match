@@ -9,10 +9,7 @@ unless Rails.env.development? || Rails.env.test?
         region: 'ap-northeast-1'
       }
 
-<<<<<<< HEAD
-=======
       config.fog_public     = false
->>>>>>> develop
       config.fog_directory  = ENV['AWS_BUCKET_NAME']
       config.cache_storage = :fog
     else
