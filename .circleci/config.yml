@@ -39,6 +39,8 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       - run: mv config/database.yml.ci config/database.yml
+      # mysqlの設定が終わる前に実行されるため30秒待機させる
+      - run: sleep 30
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
