@@ -8,7 +8,6 @@ unless Rails.env.development? || Rails.env.test?
         aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
         region: 'ap-northeast-1'
       }
-
       config.fog_public     = false
       config.fog_directory  = ENV['AWS_BUCKET_NAME']
       config.cache_storage = :fog
