@@ -3,11 +3,10 @@
     参加人数
   </div>
   <div class='participant-count'>
-    <%= @event.participations.count %>
+    <%= @event.participations_count.to_i %>
     /
     <%= @event.participant_limit %>
   </div>
-
 
   <% if @event.participated_by?(current_user) %>
     <%= link_to "参加取り消し", event_participation_path(@event.id), method: :delete, class: "btn btn-danger rounded-pill w-100",
@@ -16,10 +15,12 @@
                         "cancel" => "やめる",
                         }, title: "参加取り消しの確認" %>
   <% else %>
-    <%= link_to "参加", event_participations_path(@event.id), method: :post, class: "btn btn-success rounded-pill w-100",
-            data: { confirm: "参加してもよろしいでしょうか？",
-                    "commit" => "参加する",
-                    "cancel" => "やめる",
-                    }, title: "参加の確認" %>
+    <% if !@event.possible_to_participate? %>
+      <%= link_to "参加", event_participations_path(@event.id), method: :post, class: "btn btn-success rounded-pill w-100",
+              data: { confirm: "参加してもよろしいでしょうか？",
+                      "commit" => "参加する",
+                      "cancel" => "やめる",
+                      }, title: "参加の確認" %>
+    <% end %>
   <% end %>
 </div>

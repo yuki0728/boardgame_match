@@ -36,15 +36,19 @@ class Event < ApplicationRecord
   scope :event_search, -> (search_params) do
     return if search_params.blank?
 
-    valid_events.
+    valid_events(search_params[:exclusion]).
       name_like(search_params[:name]).
       find_by_tag(search_params[:tag_list]).
       find_by_start_time(search_params[:date]).
       sorting(search_params[:keyword])
   end
 
-  # 有効なイベント(開始していないイベント)のみ取得
-  scope :valid_events, -> { where("start_time > ?", DateTime.now) }
+  # 有効なイベント(参加できるイベント)のみ取得
+  scope :valid_events, -> (exclusion) {
+    if exclusion
+      where("participations_count < participant_limit AND start_time > ?", DateTime.current)
+    end
+  }
   # イベント名の検索
   scope :name_like, -> (name) { where('name LIKE ?', "%#{name}%") if name.present? }
   # タグの検索
@@ -68,6 +72,15 @@ class Event < ApplicationRecord
     }
   }
 
+  # 参加可能か？
+  def possible_to_participate?
+    if participant_limit.to_i <= participations_count.to_i && start_time > Time.current
+      true
+    else
+      false
+    end
+  end
+
   # イベントのオーナーか？
   def owner?(user)
     user_id.equal? user.id unless user.nil?
@@ -80,7 +93,7 @@ class Event < ApplicationRecord
 
   # 参加人数が上限を超えていないかチェック
   def check_number_of_participant_limit
-    if participant_limit && participant_limit < participations.count
+    if participant_limit.to_i < participations_count.to_i
       errors.add(:participant_limit, "が参加人数より少ないです")
     end
   end

@@ -59,40 +59,68 @@ start_time = DateTime.current.tomorrow
 Event.create!(
   [
     {
-      name: "ドミニオンの大会を名古屋で開催します",
-      text: "みんなで色々ゲームしよう！",
+      name: "ゲーム大会を名古屋で開催します",
+      text: "名古屋内でボードゲームをプレイする方を募集しています！
+
+初心者歓迎！、むしろそういう人に参加してほしいイベントです。
+
+今回の企画は、【ゲーム数3本以上を予定】予定しています！
+
+初めてプレイすること方も多いのでどんどんご気軽にご応募ください。
+なお、遊ぶゲームはコメント欄で決める予定です",
       start_time: DateTime.current.tomorrow,
-      ending_time: start_time.since(3.hours),
+      ending_time: start_time.since(3.days),
       participant_limit: "4",
-      tag_list: "ドミニオン,名古屋",
+      tag_list: "ゲーム未定,名古屋初心者歓迎",
       user_id: "1",
-      img: open("#{Rails.root}/db/fixtures/sample1.jpg"),
+      img: open("#{Rails.root}/db/fixtures/sample10.jpg"),
       place: 'ボードゲームバー ロードオブアギト',
       address: '愛知県 名古屋市 名古屋駅',
     },
     {
-      name: "ゲーマー",
-      text: "東京住みの人募集、ゲームやりましょう",
+      name: "【第7回】秋葉原ドミニオン大会",
+      text: "東京都内でドミニオンをプレイする方を募集しています。
+
+司会進行は主催者が努めます。
+
+参加人数は8人でトーナメントを予定していますが、
+希望者の人数次第では増やすため12人までは参加できるようにしています。
+
+開催場所は参加人数が確定でき次第、決める予定です。
+
+その他、ご質問等あればコメント欄にてお願いいたします。",
       start_time: DateTime.current.tomorrow,
-      ending_time: start_time.since(3.hours),
+      ending_time: start_time.since(3.days),
       participant_limit: "5",
-      tag_list: "宝石の輝き,東京",
+      tag_list: "ドミニオン,東京,秋葉原,ボードゲームバー",
       user_id: "2",
-      img: open("#{Rails.root}/db/fixtures/sample10.jpg"),
+      img: open("#{Rails.root}/db/fixtures/sample1.jpg"),
       place: 'ボードゲームバー(未定)',
       address: '東京都 千代田区 秋葉原',
     },
     {
-      name: "犯人は踊るオフ会(他ゲームもやるかも)",
-      text: "参加人数5人まで！千代田区〜駅集合！",
+      name: "学生交流会",
+      text: "学生同士でボードゲームで遊んじゃいましょう!
+3人以上で20分かからないくらいの簡単なボードゲームを5種類ほどご用意します。
+詳しくは本文最下部をご確認ください。
+
+【参加者】学生のみ
+【参加費】あり(500円)
+
+ソフトドリンクやおやつは用意しています。
+
+お友達作りはオッケーですが、営業や勧誘はご遠慮下さい！！
+
+私たちで説明、進行をいたしますので、わからないことはお気軽にコメント欄で質問してください。
+      ",
       start_time: DateTime.current.tomorrow,
-      ending_time: start_time.since(3.hours),
+      ending_time: start_time.since(3.days),
       participant_limit: "5",
-      tag_list: "犯人は踊る,千代田区",
+      tag_list: "犯人は踊る,文京区",
       user_id: "3",
       img: open("#{Rails.root}/db/fixtures/sample9.jpg"),
-      place: '東京大学',
-      address: '東京都 文京区',
+      place: '愛知県名古屋市中村区名駅2-42-10',
+      address: 'レンタルスペース',
     },
   ]
 )
@@ -103,7 +131,7 @@ name = [
   'ワンナイト人狼', '犯人は踊る', '宝石の輝き',
 ]
 
-comment = ['はじめまして', '誰かいますか？', 'おーい']
+comment = ['ご質問はこちらにお願いします。', 'また、他に遊びたいゲーム等あればリクエストしてください！']
 
 prefectures = [
   '愛知県', '愛知県', '東京都', '東京都', '大阪府', '大阪府',
@@ -145,8 +173,19 @@ place = [
   start_time = DateTime.current.tomorrow + rand(1..100).hours
   image = open("#{Rails.root}/db/fixtures/sample#{n % 11}.jpg")
   Event.create!(
-    name: "#{name[n % 11]}やろう!",
-    text: "#{address[n % 11]}の#{name[n % 11]}好き集まれ!",
+    name: "#{prefectures[n % 11]}の方、一緒に#{name[n % 11]}を遊びましょう!",
+    text: "#{prefectures[n % 11]}の方、一緒に#{name[n % 11]}を遊びましょう!
+主催者もプロフェッショナルでは無く、初心者や初めての方とも一緒に遊べたらと思っています！
+
+他にもやってみたいゲームがあればご持参ください。
+
+参加費は一人1000円を予定しています。
+
+ソフトドリンクやおやつは用意しています。
+
+お友達作りはオッケーですが、営業や勧誘はご遠慮下さい！！
+
+わからないことはお気軽にコメント欄で質問してください。",
     start_time: start_time,
     ending_time: start_time.since(3.hours),
     participant_limit: participant_limit,
@@ -188,3 +227,19 @@ end
     User.find(n).active_relationships.create(followed_id: m)
   end
 end
+
+User.create!(
+  [
+    {
+      username: 'admin',
+      email: 'admin@example.com',
+      password: ENV['ADMIIN_USER_PASSWORD'],
+      password_confirmation: ENV['ADMIIN_USER_PASSWORD'],
+      profile: "管理人です。",
+      favorite_game: "カタン",
+      img: open("#{Rails.root}/db/fixtures/user/sample0.jpg"),
+      confirmed_at: Time.current,
+      admin: TRUE,
+    },
+  ]
+)

@@ -81,7 +81,7 @@ class EventsController < ApplicationController
   end
 
   def event_search_params
-    params.fetch(:event_search, {}).permit(:name, :tag_list, :date, :keyword)
+    params.fetch(:event_search, {}).permit(:name, :tag_list, :date, :keyword, :exclusion)
   end
 
   def correct_user

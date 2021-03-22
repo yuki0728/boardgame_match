@@ -6,13 +6,18 @@
     <%= form_with(scope: :event_search, url: url, method: :get, local: send_locally) do |f| %>
 
       <%= f.label :name, 'イベント名' %>
-      <%= f.text_field :name, class: 'form-control',value:search_params[:name], placeholder: "例: オフ会,大会" %><br>
+      <%= f.text_field :name, class: 'form-control',　value:search_params[:name], placeholder: "例: オフ会,大会" %><br>
 
       <%= f.label :tag_list, 'タグ' %>
       <%= f.text_field :tag_list, class: "form-control tag_form", value:search_params[:tag_list] %><br>
 
       <%= f.label :date, '開催日' %>
-      <%= f.date_field :date, class: 'form-control',value:search_params[:date] ,placeholder: "例: " << I18n.localize(Date.today) %>
+      <%= f.date_field :date, class: 'form-control', value:search_params[:date] ,placeholder: "例: " << I18n.localize(Date.today) %>
+
+      <div class='sidebar-search-checkbox'>
+        <%= f.check_box :exclusion, { class: 'form-control', checked: search_params[:exclusion] }, true, false %>
+        <%= f.label :exclusion, '参加可のみ表示' %>
+      </div>
 
       <%= f.hidden_field :keyword ,value: @search_params[:keyword] %>
 
