@@ -42,7 +42,6 @@ RSpec.describe "Relationships", type: :request do
     context "ログインしているユーザーの場合" do
       before do
         sign_in user
-        post relationships_path, params: { followed_id: other_user.id }
       end
 
       it 'リクエストが成功すること' do

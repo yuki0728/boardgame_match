@@ -7,7 +7,7 @@ RSpec.describe "Participations", type: :system do
   scenario "ユーザがイベントに参加できる" do
     login_as(user, :scope => :user)
     event = create(:event, user_id: other_user.id)
-    visit root_path
+    visit events_path
     expect do
       click_on event.name
       click_on "参加"
@@ -19,7 +19,7 @@ RSpec.describe "Participations", type: :system do
     login_as(user, :scope => :user)
     event = create(:event, user_id: other_user.id)
     create(:participation, event_id: event.id, user_id: user.id)
-    visit root_path
+    visit events_path
     expect do
       click_on event.name
       click_on "参加取り消し"

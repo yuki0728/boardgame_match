@@ -46,7 +46,7 @@ RSpec.describe "Events", type: :system do
   scenario "主催者のみイベントを削除できる" do
     login_as(user, :scope => :user)
     event = create(:event, user_id: user.id)
-    visit root_path
+    visit events_path
     expect do
       click_on event.name
       click_on "イベント削除"
@@ -57,7 +57,7 @@ RSpec.describe "Events", type: :system do
   scenario "主催者のみイベントを編集できる" do
     login_as(user, :scope => :user)
     event = create(:event, user_id: user.id)
-    visit root_path
+    visit events_path
     expect do
       click_on event.name
       click_on "イベント編集"
@@ -71,7 +71,7 @@ RSpec.describe "Events", type: :system do
   scenario "主催者以外はイベント削除、編集が表示しない" do
     event = create(:event, user_id: user.id)
     login_as(other_user, :scope => :user)
-    visit root_path
+    visit events_path
     click_on event.name
     expect(page).not_to have_content "イベント編集"
     expect(page).not_to have_content "イベント編集"
