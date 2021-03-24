@@ -89,6 +89,8 @@ group :development do
   gem 'rubocop-airbnb'
   gem 'rubocop', '~> 0.76'
   gem 'spring-commands-rspec'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :test do
