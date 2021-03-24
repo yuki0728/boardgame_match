@@ -61,4 +61,4 @@
 #   }
 
 # EC2サーバーのIP、EC2サーバーにログインするユーザー名、サーバーのロールを記述
-server '54.150.90.255', user: 'ec2-user', roles: %w{app db web}
+server '52.69.16.22', user: 'ec2-user', roles: %w{app db web}
