@@ -62,3 +62,12 @@
 
 # EC2サーバーのIP、EC2サーバーにログインするユーザー名、サーバーのロールを記述
 server '52.69.16.22', user: 'ec2-user', roles: %w{app db web}
+
+set :ssh_options, {
+  port: 22,
+  forward_agent: true,
+  keys: ['~/.ssh/id_rsa'],
+}
+
+set :deploy_target, 'app'
+set :branch, :master
