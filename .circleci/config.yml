@@ -71,6 +71,7 @@ jobs:
           name: Capistrano deploy
           command: |
             if [ "${CIRCLE_BRANCH}" != "master" ]; then
+              echo $CIRCLE_BRANCH
               exit 0
             fi
             bundle exec cap production deploy
