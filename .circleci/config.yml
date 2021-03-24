@@ -19,6 +19,9 @@ jobs:
     
     steps:
       - checkout
+      - run: # 現在のブランチをテストします
+        name: "どのブランチにいるか"
+        command: echo ${CIRCLE_BRANCH}
       # CircleCIから指定したkeyのキャッシュを読み込む
       - restore_cache:
           keys:
@@ -71,7 +74,6 @@ jobs:
           name: Capistrano deploy
           command: |
             if [ "${CIRCLE_BRANCH}" != "master" ]; then
-              echo ${CIRCLE_BRANCH}
               exit 0
             fi
             bundle exec cap production deploy
