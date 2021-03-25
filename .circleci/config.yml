@@ -19,9 +19,6 @@ jobs:
     
     steps:
       - checkout
-      - run: # 現在のブランチをテストします
-          name: "どのブランチにいるか"
-          command: echo ${CIRCLE_BRANCH}
       # CircleCIから指定したkeyのキャッシュを読み込む
       - restore_cache:
           keys:
