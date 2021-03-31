@@ -66,8 +66,5 @@ server '52.69.16.22', user: 'ec2-user', roles: %w{app db web}
 set :ssh_options, {
   port: 22,
   forward_agent: true,
-  keys: ['~/.ssh/id_rsa'],
+  keys: ['~/.ssh/boardgame_match_key.pem'],
 }
-
-set :deploy_target, 'app'
-set :branch, :master
