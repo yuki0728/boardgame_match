@@ -1,12 +1,42 @@
-# ../が一つ増えている
-app_path = File.expand_path('../../../', __FILE__)
+APP_PATH   = "#{File.dirname(__FILE__)}/.." unless defined?(APP_PATH)
+RAILS_ROOT = "#{File.dirname(__FILE__)}/.." unless defined?(RAILS_ROOT)
+RAILS_ENV  = ENV['RAILS_ENV'] || 'development'
 
-worker_processes 1
-# currentを指定
-working_directory "#{app_path}/current"
+worker_processes 3
 
-# それぞれ、sharedの中を参照するよう変更
-listen "#{app_path}/shared/tmp/sockets/unicorn.sock"
-pid "#{app_path}/shared/tmp/pids/unicorn.pid"
-stderr_path "#{app_path}/shared/log/unicorn.stderr.log"
-stdout_path "#{app_path}/shared/log/unicorn.stdout.log"
+listen "/tmp/unicorn.sock"
+pid "tmp/pids/unicorn.pid"
+
+preload_app true
+
+timeout 60
+working_directory APP_PATH
+
+# logのpath
+stderr_path "#{RAILS_ROOT}/log/unicorn_error.log"
+stdout_path "#{RAILS_ROOT}/log/unicorn_access.log"
+
+if GC.respond_to?(:copy_on_write_friendly=)
+  GC.copy_on_write_friendly = true
+end
+
+before_exec do |server|
+  ENV['BUNDLE_GEMFILE'] = APP_PATH + "/Gemfile"
+end
+
+before_fork do |server, worker|
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+
+  old_pid = "#{ server.config[:pid] }.oldbin"
+  unless old_pid == server.pid
+    begin
+      Process.kill :QUIT, File.read(old_pid).to_i
+    rescue Errno::ENOENT, Errno::ESRCH
+
+    end
+  end
+end
+
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+end
