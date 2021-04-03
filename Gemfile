@@ -73,6 +73,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'pry-rails'
   gem 'database_cleaner'
+  gem 'rails-erd'
 
   gem 'capistrano'
   gem 'capistrano-rbenv'
