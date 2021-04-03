@@ -27,34 +27,8 @@ set :keep_releases, 5
 # デプロイ処理が終わった後、Unicornを再起動するための記述
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-
-    end
-  end
-
   task :restart do
     invoke 'unicorn:restart'
   end
 
-  desc 'upload master.key'
-  task :upload do
-    desc 'Create database'
-    task :db_create do
-      on roles(:db) do |host|
-        with rails_env: fetch(:rails_env) do
-          within current_path do
-            execute :bundle, :exec, :rake, 'db:create'
-          end
-        end
-      end
-    end
-
-    on roles(:app) do |_host|
-      execute "mkdir -p #{shared_path}/config" if test "[ ! -d #{shared_path}/config ]"
-      # upload!('config/master.key', "#{shared_path}/config/master.key")
-    end
-  end
-  before :starting, 'deploy:upload'
-  after :finishing, 'deploy:cleanup'
 end
