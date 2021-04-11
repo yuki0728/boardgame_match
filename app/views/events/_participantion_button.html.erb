@@ -15,7 +15,7 @@
                         "cancel" => "やめる",
                         }, title: "参加取り消しの確認" %>
   <% else %>
-    <% if !@event.possible_to_participate? %>
+    <% if @event.possible_to_participate? %>
       <%= link_to "参加", event_participations_path(@event.id), method: :post, class: "btn btn-success rounded-pill w-100",
               data: { confirm: "参加してもよろしいでしょうか？",
                       "commit" => "参加する",
