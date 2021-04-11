@@ -74,7 +74,7 @@ class Event < ApplicationRecord
 
   # 参加可能か？
   def possible_to_participate?
-    if participant_limit.to_i <= participations_count.to_i && start_time > Time.current
+    if participant_limit.to_i > participations_count.to_i && start_time > Time.current
       true
     else
       false

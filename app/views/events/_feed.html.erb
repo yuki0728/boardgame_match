@@ -12,9 +12,9 @@
     </object>
     <div class="eventlist-img">
       <% if event.possible_to_participate? %>
-        <p class="eventlist-stamp_red">参加不可</p>
-      <% else %>
         <p class="eventlist-stamp_green">参加可</p>
+      <% else %>
+        <p class="eventlist-stamp_red">参加不可</p>
       <% end %>
       <% if event.img? %>
         <%= image_tag event.img.thumb.url %>
