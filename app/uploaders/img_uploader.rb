@@ -31,9 +31,7 @@ class ImgUploader < CarrierWave::Uploader::Base
 
   # ファイル名を日付で保存する
   def filename
-    time = Time.now
-    name = time.strftime('%Y%m%d%H%M%S') + '.jpg'
-    name.downcase
+    "#{secure_token}.#{file.extension}" if original_filename.present?
   end
 
   def store_dir
@@ -42,5 +40,12 @@ class ImgUploader < CarrierWave::Uploader::Base
     else
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
+  end
+
+  protected
+
+  def secure_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
 end
