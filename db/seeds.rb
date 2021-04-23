@@ -55,7 +55,9 @@ end
 
 FileUtils.rm_rf("#{Rails.root}/public/uploads/event")
 # イベント
-start_time = DateTime.current.tomorrow
+start_time_1 = DateTime.current.since(3.month).beginning_of_day.since(13.hours)
+start_time_2 = DateTime.current.since(2.month).beginning_of_day.since(15.hours)
+start_time_3 = DateTime.current.since(2.month).beginning_of_day.since(10.hours)
 Event.create!(
   [
     {
@@ -68,8 +70,8 @@ Event.create!(
 
 初めてプレイすること方も多いのでどんどんご気軽にご応募ください。
 なお、遊ぶゲームはコメント欄で決める予定です",
-      start_time: DateTime.current.tomorrow,
-      ending_time: start_time.since(3.month),
+      start_time: start_time_1,
+      ending_time: start_time_1.since(3.hours),
       participant_limit: "4",
       tag_list: "ゲーム未定,名古屋初心者歓迎",
       user_id: "1",
@@ -89,8 +91,8 @@ Event.create!(
 開催場所は参加人数が確定でき次第、決める予定です。
 
 その他、ご質問等あればコメント欄にてお願いいたします。",
-      start_time: DateTime.current.tomorrow,
-      ending_time: start_time.since(1.month),
+      start_time: start_time_2,
+      ending_time: start_time_2.since(3.hours),
       participant_limit: "5",
       tag_list: "ドミニオン,東京,秋葉原,ボードゲームバー",
       user_id: "2",
@@ -113,8 +115,8 @@ Event.create!(
 
 私たちで説明、進行をいたしますので、わからないことはお気軽にコメント欄で質問してください。
       ",
-      start_time: DateTime.current.tomorrow,
-      ending_time: start_time.since(2.month),
+      start_time: start_time_3,
+      ending_time: start_time_3.since(5.hours),
       participant_limit: "5",
       tag_list: "犯人は踊る,文京区",
       user_id: "3",
@@ -170,7 +172,8 @@ place = [
   participant_limit = rand(2..10)
   user_id = rand(7..User.count)
   event_id = Event.count + 1
-  start_time = DateTime.current.tomorrow + rand(1..100).days
+  start_time = DateTime.current.beginning_of_day.since(13.hours) + rand(-3..5).hours + rand(1..100).days
+  ending_time = start_time.since(rand(2..5).hours)
   image = open("#{Rails.root}/db/fixtures/sample#{n % 11}.jpg")
   Event.create!(
     name: "#{prefectures[n % 11]}の方、一緒に#{name[n % 11]}を遊びましょう!",
@@ -187,7 +190,7 @@ place = [
 
 わからないことはお気軽にコメント欄で質問してください。",
     start_time: start_time,
-    ending_time: start_time.since(3.hours),
+    ending_time: ending_time,
     participant_limit: participant_limit,
     tag_list: "#{name[n % 11]},#{prefectures[n % 11]}",
     user_id: user_id,
