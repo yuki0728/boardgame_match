@@ -69,7 +69,7 @@ Event.create!(
 初めてプレイすること方も多いのでどんどんご気軽にご応募ください。
 なお、遊ぶゲームはコメント欄で決める予定です",
       start_time: DateTime.current.tomorrow,
-      ending_time: start_time.since(3.days),
+      ending_time: start_time.since(3.month),
       participant_limit: "4",
       tag_list: "ゲーム未定,名古屋初心者歓迎",
       user_id: "1",
@@ -90,7 +90,7 @@ Event.create!(
 
 その他、ご質問等あればコメント欄にてお願いいたします。",
       start_time: DateTime.current.tomorrow,
-      ending_time: start_time.since(3.days),
+      ending_time: start_time.since(1.month),
       participant_limit: "5",
       tag_list: "ドミニオン,東京,秋葉原,ボードゲームバー",
       user_id: "2",
@@ -114,7 +114,7 @@ Event.create!(
 私たちで説明、進行をいたしますので、わからないことはお気軽にコメント欄で質問してください。
       ",
       start_time: DateTime.current.tomorrow,
-      ending_time: start_time.since(3.days),
+      ending_time: start_time.since(2.month),
       participant_limit: "5",
       tag_list: "犯人は踊る,文京区",
       user_id: "3",
@@ -170,7 +170,7 @@ place = [
   participant_limit = rand(2..10)
   user_id = rand(7..User.count)
   event_id = Event.count + 1
-  start_time = DateTime.current.tomorrow + rand(1..100).hours
+  start_time = DateTime.current.tomorrow + rand(1..100).days
   image = open("#{Rails.root}/db/fixtures/sample#{n % 11}.jpg")
   Event.create!(
     name: "#{prefectures[n % 11]}の方、一緒に#{name[n % 11]}を遊びましょう!",
